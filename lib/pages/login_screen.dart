@@ -51,8 +51,9 @@ class _LoginScreenState extends State<LoginScreen> {
           return SingleChildScrollView(
             child: ConstrainedBox(
               constraints: BoxConstraints(
-                  minHeight: constraints.minHeight,
-                  maxHeight: constraints.maxHeight),
+                minHeight: constraints.minHeight,
+                maxHeight: constraints.maxHeight,
+              ),
               child: Container(
                 color: HexColor("e8f0f3"),
                 child: Center(
@@ -88,34 +89,41 @@ class _LoginScreenState extends State<LoginScreen> {
                                   minWidth: double.infinity,
                                   height: 40,
                                   shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(4))),
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(4),
+                                    ),
+                                  ),
                                   child: RaisedButton.icon(
-                                      elevation: 0,
-                                      label: Text(
-                                        "Войти",
-                                        style: TextStyle(color: Colors.white),
-                                      ),
-                                      icon: Icon(
-                                        Icons.email,
-                                        color: Colors.white,
-                                      ),
-                                      onPressed: () => print("Hello")),
+                                    elevation: 0,
+                                    label: Text(
+                                      "Войти",
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                    icon: Icon(
+                                      Icons.email,
+                                      color: Colors.white,
+                                    ),
+                                    onPressed: () => print("Hello"),
+                                  ),
                                 ),
                               ),
                               Container(
                                 child: ButtonTheme(
                                   height: 40,
                                   shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(4))),
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(4),
+                                    ),
+                                  ),
                                   child: FlatButton(
-                                      child: Text(
-                                        "Забыли пароль?",
-                                        style: TextStyle(
-                                            color: HexColor("#345B6C")),
+                                    child: Text(
+                                      "Забыли пароль?",
+                                      style: TextStyle(
+                                        color: HexColor("#345B6C"),
                                       ),
-                                      onPressed: () => print("Hello")),
+                                    ),
+                                    onPressed: () => print("Hello"),
+                                  ),
                                 ),
                               )
                             ],
