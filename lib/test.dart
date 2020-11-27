@@ -1,15 +1,14 @@
 import 'dart:convert' as convert;
-import 'package:quiz_flutter/api/mdt_filter_helper.dart';
+import 'package:quiz_flutter/api/mdt_api_client.dart';
+import 'package:quiz_flutter/api/mdt_api_client_auth.dart';
+import 'package:quiz_flutter/utils/constants.dart';
 
-void main() {
-  // List<Map<String, dynamic>> arr = [1,2,3];
-  var f = Filter.and(
-      [Filter.eq("ID_Outlet", 1), Filter.eq("Items/ID_Questionnaire", 2)]);
-  print(convert.json.encode(f));
-}
+void main() async {
+  var client = new MdtApiClient(Consts.api_url, Consts.app_url);
+  var auth = new MdtApiClientAuth(client);
 
-class Foo {
-  Object test(num n) {
-    return n > 5 ? "Qwerty" : {"foo": "bar"};
-  }
+  var r = await auth.signIn(login: "svoinkov", password: "rB12rb");
+  print("Signin status: ${r.statusCode}");
+  var r2 = await auth.signOut();
+  print("Signout status: ${r2.statusCode}");
 }

@@ -3,7 +3,7 @@ import 'dart:convert' as convert;
 import 'package:quiz_flutter/models/mdt_api_error_data.dart';
 
 typedef void OnRequestError(dynamic err, String url, dynamic data);
-const Map<String, String> requestHeaders = {"Content-Type": "application/json"};
+final Map<String, String> requestHeaders = {"Content-Type": "application/json"};
 
 class MDTApiServiceOptions {
   MDTApiServiceOptions(this.onRequestError);
