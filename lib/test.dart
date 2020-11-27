@@ -1,5 +1,5 @@
 import 'dart:convert' as convert;
-import 'package:quiz_flutter/services/mdt/mdt_api_client/filter.dart';
+import 'package:quiz_flutter/api/mdt_filter_helper.dart';
 import 'package:quiz_flutter/utils/constants.dart';
 
 void main() {

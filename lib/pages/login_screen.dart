@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:quiz_flutter/services/mdt/mdt_api_client/mdt_api_client.dart';
+import 'package:quiz_flutter/api/mdt_api_client.dart';
 import 'package:quiz_flutter/widgets/input_field.dart';
 import 'package:quiz_flutter/widgets/buttons_divided_group.dart';
 
