@@ -10,9 +10,9 @@ class MDTApiServiceOptions {
   OnRequestError onRequestError;
 }
 
-class MdtRequestSettigns {
-  bool camel;
-  MdtRequestSettigns({this.camel = false});
+class MdtRequestSettings {
+  final bool camel;
+  const MdtRequestSettings({this.camel = true});
 }
 
 class MdtApiClient {
@@ -25,7 +25,7 @@ class MdtApiClient {
   }
 
   Future<http.Response> request(String url,
-      {dynamic data, MdtRequestSettigns settings}) async {
+      {dynamic data, MdtRequestSettings settings}) async {
     dynamic body = null;
 
     if (settings != null && settings.camel) url += "?camel=true";

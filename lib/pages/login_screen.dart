@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:quiz_flutter/api/mdt_api_client.dart';
+import 'package:quiz_flutter/utils/constants.dart';
 import 'package:quiz_flutter/widgets/input_field.dart';
 import 'package:quiz_flutter/widgets/buttons_divided_group.dart';
 
@@ -11,9 +12,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  MdtApiClient _apiClient = new MdtApiClient(
-      "https://stage.ics-it.ru/rb/quiz-test/api",
-      "https://stage.ics-it.ru/rb/quiz-test");
+  MdtApiClient _apiClient = new MdtApiClient(Consts.api_url, Consts.app_url);
   String email = "";
   String password = "";
   Object error;
@@ -38,20 +37,20 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(48),
-          child: AppBar(
-            elevation: 10,
-            centerTitle: true,
-            backgroundColor: Colors.white,
-            title: Text(
-              'Авторизация',
-              style: TextStyle(color: Colors.black),
-            ),
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(48),
+        child: AppBar(
+          elevation: 10,
+          centerTitle: true,
+          backgroundColor: Colors.white,
+          title: Text(
+            'Авторизация',
+            style: TextStyle(color: Colors.black),
           ),
         ),
-        body: LayoutBuilder(
-            builder: (BuildContext context, BoxConstraints constraints) {
+      ),
+      body: LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) {
           return SingleChildScrollView(
             child: ConstrainedBox(
               constraints: BoxConstraints(
@@ -67,12 +66,13 @@ class _LoginScreenState extends State<LoginScreen> {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Expanded(
-                          flex: 2,
-                          child: Center(
-                            child: Container(
-                              child: SvgPicture.asset('assets/quiz_logo.svg'),
-                            ),
-                          )),
+                        flex: 2,
+                        child: Center(
+                          child: Container(
+                            child: SvgPicture.asset('assets/quiz_logo.svg'),
+                          ),
+                        ),
+                      ),
                       Container(
                         margin: const EdgeInsets.only(bottom: 32),
                         child: Flexible(
@@ -83,70 +83,73 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                       Flexible(
-                          flex: 1,
-                          child: Column(
-                            children: [
-                              Container(
-                                padding: EdgeInsets.symmetric(horizontal: 20),
-                                //margin: EdgeInsets.only(bottom: 40),
-                                child: ButtonTheme(
-                                  minWidth: double.infinity,
-                                  height: 40,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(4),
-                                    ),
+                        flex: 1,
+                        child: Column(
+                          children: [
+                            Container(
+                              padding: EdgeInsets.symmetric(horizontal: 20),
+                              //margin: EdgeInsets.only(bottom: 40),
+                              child: ButtonTheme(
+                                minWidth: double.infinity,
+                                height: 40,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(4),
                                   ),
-                                  child: RaisedButton.icon(
-                                    elevation: 0,
-                                    label: Text(
-                                      "Войти",
-                                      style: TextStyle(color: Colors.white),
-                                    ),
-                                    icon: Icon(
-                                      Icons.email,
-                                      color: Colors.white,
-                                    ),
-                                    onPressed: () async {
-                                      var r = await this
-                                          ._apiClient
-                                          .request("security/signin", data: {
-                                        "login": "svoinkov",
-                                        "password": "Rb12rb",
-                                        "rememberMe": true
-                                      });
-                                      print(r.statusCode);
-                                    },
+                                ),
+                                child: RaisedButton.icon(
+                                  elevation: 0,
+                                  label: Text(
+                                    "Войти",
+                                    style: TextStyle(color: Colors.white),
                                   ),
+                                  icon: Icon(
+                                    Icons.email,
+                                    color: Colors.white,
+                                  ),
+                                  onPressed: () async {
+                                    var r = await this
+                                        ._apiClient
+                                        .request("security/signin", data: {
+                                      "login": "svoinkov",
+                                      "password": "Rb12rb",
+                                      "rememberMe": true
+                                    });
+                                    print(r.statusCode);
+                                  },
                                 ),
                               ),
-                              Container(
-                                child: ButtonTheme(
-                                  height: 40,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(4),
-                                    ),
-                                  ),
-                                  child: FlatButton(
-                                    child: Text(
-                                      "Забыли пароль?",
-                                      style: TextStyle(
-                                        color: HexColor("#345B6C"),
-                                      ),
-                                    ),
-                                    onPressed: () => print("Hello"),
+                            ),
+                            Container(
+                              child: ButtonTheme(
+                                height: 40,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(4),
                                   ),
                                 ),
-                              )
-                            ],
-                          ))
+                                child: FlatButton(
+                                  child: Text(
+                                    "Забыли пароль?",
+                                    style: TextStyle(
+                                      color: HexColor("#345B6C"),
+                                    ),
+                                  ),
+                                  onPressed: () => print("Hello"),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 ),
               ),
             ),
           );
-        }));
+        },
+      ),
+    );
   }
 }
