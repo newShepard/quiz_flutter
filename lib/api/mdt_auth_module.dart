@@ -3,9 +3,9 @@ import 'package:http/http.dart';
 import 'package:quiz_flutter/api/mdt_api_client.dart';
 import 'package:meta/meta.dart';
 
-class MdtApiClientAuth {
+class MdtAuthModule {
   MdtApiClient _mdtApiClient;
-  MdtApiClientAuth(this._mdtApiClient);
+  MdtAuthModule(this._mdtApiClient);
 
   Future<Response> _request(String url_path,
       {Map<String, dynamic> data,
