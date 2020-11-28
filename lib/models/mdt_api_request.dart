@@ -1,3 +1,7 @@
+import 'package:json_annotation/json_annotation.dart';
+//part 'mdt_api_request.g.dart';
+
+//@JsonSerializable(createToJson: true)
 class QuerySorting {
   String path;
   bool asc;
@@ -5,6 +9,7 @@ class QuerySorting {
   QuerySorting(this.path, {this.asc});
 }
 
+//@JsonSerializable(createToJson: true)
 class Query {
   List<String> select;
   List<QuerySorting> sorting;

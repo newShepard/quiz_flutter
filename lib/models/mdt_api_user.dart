@@ -1,3 +1,7 @@
+import 'package:json_annotation/json_annotation.dart';
+part 'mdt_api_user.g.dart';
+
+@JsonSerializable(createToJson: false)
 class MdtApiUser {
   int id;
   String fullName;
