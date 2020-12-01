@@ -8,13 +8,13 @@ class MdtAuthModule {
   MdtAuthModule(this._mdtApiClient);
 
   Future<Response> _request(String url_path,
-      {Map<String, dynamic> data,
+      {Map<String, dynamic>? data,
       MdtRequestSettings settings = const MdtRequestSettings(camel: true)}) {
     return this._mdtApiClient.request(url_path, data: data, settings: settings);
   }
 
   Future<Response> signIn(
-      {@required String login, @required String password, bool rememberMe}) {
+      {required String login, required String password, bool? rememberMe}) {
     return this._request("security/signin", data: {
       "login": login,
       "password": password,
@@ -26,7 +26,7 @@ class MdtAuthModule {
     return this._request("security/signout");
   }
 
-  Future<Response> impersonate({num id}) {
+  Future<Response> impersonate({required num id}) {
     return this._request("security/impersonate", data: {"id": id});
   }
 

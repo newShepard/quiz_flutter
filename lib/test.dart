@@ -1,3 +1,4 @@
+// @dart=2.9
 import 'package:quiz_flutter/api/mdt_api_client.dart';
 import 'package:quiz_flutter/api/mdt_auth_module.dart';
 import 'package:quiz_flutter/utils/constants.dart';

@@ -1,24 +1,25 @@
 import 'package:json_annotation/json_annotation.dart';
-//part 'mdt_api_request.g.dart';
 
-//@JsonSerializable(createToJson: true)
+part 'mdt_api_request.g.dart';
+
+@JsonSerializable(createToJson: true, createFactory: false)
 class QuerySorting {
   String path;
-  bool asc;
+  bool? asc;
 
   QuerySorting(this.path, {this.asc});
 }
 
-//@JsonSerializable(createToJson: true)
+@JsonSerializable(createToJson: true, createFactory: false)
 class Query {
-  List<String> select;
-  List<QuerySorting> sorting;
-  dynamic filter;
-  bool count;
-  int top;
-  int skip;
-  bool distinct;
-  Map<String, dynamic> params;
+  List<String?>? select;
+  List<QuerySorting?>? sorting;
+  dynamic? filter;
+  bool? count;
+  int? top;
+  int? skip;
+  bool? distinct;
+  Map<String, dynamic>? params;
 
   Query(
       {this.select,

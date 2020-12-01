@@ -5,7 +5,7 @@ part 'password_api_response.g.dart';
 @JsonSerializable(createToJson: false)
 class CheckRegistrationResponse {
   bool enabled;
-  CheckRegistrationResponse({this.enabled});
+  CheckRegistrationResponse({required this.enabled});
 
   factory CheckRegistrationResponse.fromJson(Map<String, dynamic> json) =>
       _$CheckRegistrationResponseFromJson(json);

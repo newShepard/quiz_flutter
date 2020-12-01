@@ -18,20 +18,20 @@ class MdtRequestSettings {
 }
 
 class MdtApiClient {
-  String apiUrl;
-  String appUrl;
-  Dio _dio;
+  late String apiUrl;
+  late String appUrl;
+  late Dio _dio; //http lib
 
-  MdtApiClient(String apiUrl, String appUrl, {MDTApiServiceOptions options}) {
+  MdtApiClient(String apiUrl, String appUrl, {MDTApiServiceOptions? options}) {
     this.apiUrl = apiUrl.replaceAll(new RegExp("\/\$"), "");
     this.appUrl = appUrl;
     this._dio = new Dio();
-    var cookieJar = new CookieJar();
+    final cookieJar = new CookieJar();
     this._dio.interceptors.add(CookieManager(cookieJar));
   }
 
   Future<Response<dynamic>> request(String url,
-      {dynamic data, MdtRequestSettings settings}) async {
+      {dynamic data, MdtRequestSettings? settings}) async {
     CancelToken token = CancelToken();
     dynamic body = null;
 
@@ -47,6 +47,9 @@ class MdtApiClient {
         .then(MdtApiClient.handleMdtApiError)
         .catchError((err) {
       token.cancel("Cancel request");
+      if (token != null) {
+        token.cancel();
+      }
       print(err);
     });
   }
@@ -66,10 +69,10 @@ class MdtApiClient {
 }
 
 class MdtApiError extends Error {
-  String name;
-  String message;
-  String code;
-  dynamic args;
+  late String name;
+  String? message;
+  String? code;
+  dynamic? args;
 
   MdtApiError(MdtApiErrorData data) {
     this.name = "MDT API Error";

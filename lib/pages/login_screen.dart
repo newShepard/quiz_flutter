@@ -15,7 +15,7 @@ class _LoginScreenState extends State<LoginScreen> {
   MdtApiClient _apiClient = new MdtApiClient(Consts.api_url, Consts.app_url);
   String email = "";
   String password = "";
-  Object error;
+  Object? error;
   bool ready = false;
 
   void _onEmailChange(String v) {

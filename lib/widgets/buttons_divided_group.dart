@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class DividedGroup extends StatefulWidget {
-  DividedGroup({this.children});
+  DividedGroup({required this.children});
 
   final List<Widget> children;
   @override

@@ -17,7 +17,7 @@ class MdtPasswordModule {
   }
 
   Future<Response> _request(String url_path,
-      {Map<String, dynamic> data,
+      {Map<String, dynamic>? data,
       MdtRequestSettings settings = const MdtRequestSettings(camel: true)}) {
     return this._mdtApiClient.request(url_path, data: data, settings: settings);
   }
@@ -28,30 +28,30 @@ class MdtPasswordModule {
   }
 
   Future<Response> register(
-      {@required String code, String title, @required String email}) {
+      {required String code, String? title, required String email}) {
     return this._request('password/register', data: {
       'user': {'code': code, 'title': title, 'email': email},
       'url': this._getPasswordUrl()
     });
   }
 
-  Future<Response> sendForgotPassword({@required String login}) {
+  Future<Response> sendForgotPassword({required String login}) {
     return this._request('password/sendforgotpassword',
         data: {'login': login, 'url': this._getPasswordUrl()});
   }
 
   Future<Response> setPassword(
-      {@required String password,
-      @required String confirmPassword,
-      @required String key}) {
+      {required String password,
+      required String confirmPassword,
+      required String key}) {
     return this._request('password/setpassword',
         data: {'password': password, 'password2': confirmPassword, 'key': key});
   }
 
   Future<Response> changePassword(
-      {@required String oldPassword,
-      @required String newPassword,
-      @required bool reset}) {
+      {required String oldPassword,
+      required String newPassword,
+      required bool reset}) {
     var method = reset == true ? 'resetPassword' : 'changePassword';
     var urlParams = Utils.getUrlParams(
         {'oldPassword': oldPassword, 'newPassword': newPassword});
