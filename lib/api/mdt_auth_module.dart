@@ -1,7 +1,8 @@
 import 'dart:core';
-import 'package:http/http.dart';
+//import 'package:http/http.dart';
 import 'package:quiz_flutter/api/mdt_api_client.dart';
 import 'package:meta/meta.dart';
+import 'package:requests/requests.dart';
 
 class MdtAuthModule {
   final MdtApiClient _mdtApiClient;
