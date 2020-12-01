@@ -1,4 +1,6 @@
-import 'package:http/http.dart' as http;
+import 'package:cookie_jar/cookie_jar.dart';
+import 'package:dio/dio.dart';
+import 'package:dio_cookie_manager/dio_cookie_manager.dart';
 import 'dart:convert' as convert;
 import 'package:quiz_flutter/models/mdt_api_error_data.dart';
 
@@ -18,30 +20,40 @@ class MdtRequestSettings {
 class MdtApiClient {
   String apiUrl;
   String appUrl;
+  Dio _dio;
 
   MdtApiClient(String apiUrl, String appUrl, {MDTApiServiceOptions options}) {
     this.apiUrl = apiUrl.replaceAll(new RegExp("\/\$"), "");
     this.appUrl = appUrl;
+    this._dio = new Dio();
+    var cookieJar = new CookieJar();
+    this._dio.interceptors.add(CookieManager(cookieJar));
   }
 
-  Future<http.Response> request(String url,
+  Future<Response<dynamic>> request(String url,
       {dynamic data, MdtRequestSettings settings}) async {
+    CancelToken token = CancelToken();
     dynamic body = null;
 
     if (settings != null && settings.camel) url += "?camel=true";
-    if (data != null) body = convert.json.encode(data);
+    if (data != null) body = convert.jsonEncode(data);
 
-    return http
-        .post("${this.apiUrl}/$url", headers: requestHeaders, body: body)
+    return this
+        ._dio
+        .post("${this.apiUrl}/$url",
+            options: Options(headers: requestHeaders),
+            data: body,
+            cancelToken: token)
         .then(MdtApiClient.handleMdtApiError)
         .catchError((err) {
+      token.cancel("Cancel request");
       print(err);
     });
   }
 
-  static http.Response handleMdtApiError(http.Response response) {
+  static Response handleMdtApiError(Response response) {
     if (response.statusCode > 400) {
-      var json = convert.json.decode(response.body);
+      var json = response.data;
       if (MdtApiClient.isApiError(json))
         throw new MdtApiError(MdtApiErrorData.fromJson(json));
     }

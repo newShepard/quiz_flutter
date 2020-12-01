@@ -1,5 +1,5 @@
 import 'dart:core';
-import 'package:http/http.dart';
+import 'package:dio/dio.dart';
 import 'package:quiz_flutter/api/mdt_api_client.dart';
 import 'package:meta/meta.dart';
 
