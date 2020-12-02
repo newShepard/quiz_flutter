@@ -1,6 +1,16 @@
 import 'package:json_annotation/json_annotation.dart';
 
 @JsonSerializable(createToJson: false)
+class MdtApiUserSettings {
+  String? table = 'qst.UserSettings';
+  num? $id;
+  bool? flagAcceptPrivacyPolicy;
+  num? id_mdt_Principal;
+  MdtApiUserSettings(
+      {this.$id, this.flagAcceptPrivacyPolicy, this.id_mdt_Principal});
+}
+
+@JsonSerializable(createToJson: false)
 class MdtApiUser {
   int? id;
   String? fullName;
