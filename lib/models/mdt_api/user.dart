@@ -1,7 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'mdt_api.g.dart';
-
 @JsonSerializable(createToJson: false)
 class MdtApiUser {
   int? id;

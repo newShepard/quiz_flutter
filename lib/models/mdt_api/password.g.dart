@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'password_api_response.dart';
+part of 'password.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator

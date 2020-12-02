@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'password_api_response.g.dart';
+part 'password.g.dart';
 
 @JsonSerializable(createToJson: false)
 class CheckRegistrationResponse {

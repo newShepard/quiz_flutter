@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:quiz_flutter/api/mdt_api_client.dart';
-import 'package:quiz_flutter/models/password_api_response.dart';
 import 'package:meta/meta.dart';
+import 'package:quiz_flutter/models/mdt_api/password.dart';
 import 'package:quiz_flutter/utils/utils.dart';
 
 final String passwordUrl = '/password/:key';

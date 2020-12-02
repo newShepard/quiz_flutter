@@ -2,7 +2,8 @@ import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_cookie_manager/dio_cookie_manager.dart';
 import 'dart:convert' as convert;
-import 'package:quiz_flutter/models/mdt_api_error_data.dart';
+
+import 'package:quiz_flutter/models/mdt_api/error_data.dart';
 
 typedef void OnRequestError(dynamic err, String url, dynamic data);
 final Map<String, String> requestHeaders = {"Content-Type": "application/json"};

@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'mdt_api_error_data.g.dart';
+part 'error_data.g.dart';
 
 @JsonSerializable(createToJson: false)
 class TargetSite {

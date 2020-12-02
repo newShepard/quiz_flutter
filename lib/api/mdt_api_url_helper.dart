@@ -1,4 +1,4 @@
-import 'package:quiz_flutter/models/mdt_api_request.dart';
+import 'package:quiz_flutter/models/mdt_api/query.dart';
 
 class ApiUrlHelper {
   static dynamic query2Str(Query query) {

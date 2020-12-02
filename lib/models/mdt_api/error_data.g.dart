@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'mdt_api_error_data.dart';
+part of 'error_data.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
