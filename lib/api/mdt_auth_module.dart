@@ -9,8 +9,11 @@ class MdtAuthModule {
 
   Future<Response> _request(String url_path,
       {Map<String, dynamic>? data,
-      MdtRequestSettings settings = const MdtRequestSettings(camel: true)}) {
-    return this._mdtApiClient.request(url_path, data: data, settings: settings);
+      MdtRequestSettings? settings,
+      MdtRequestOptions? options}) {
+    return this
+        ._mdtApiClient
+        .request(url_path, data: data, settings: settings, options: options);
   }
 
   Future<Response> signIn(

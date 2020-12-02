@@ -1,10 +1,14 @@
+import 'dart:developer';
+
 import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_cookie_manager/dio_cookie_manager.dart';
+import 'package:quiz_flutter/api/mdt_api_url_helper.dart';
 import 'package:quiz_flutter/api/mdt_auth_module.dart';
 import 'package:quiz_flutter/api/mdt_password_module.dart';
-import 'dart:convert' as convert;
+import 'dart:convert';
 import 'package:quiz_flutter/models/mdt_api/error_data.dart';
+import 'package:quiz_flutter/models/mdt_api/query.dart';
 
 typedef void OnRequestError(dynamic err, String url, dynamic data);
 final Map<String, String> requestHeaders = {"Content-Type": "application/json"};
@@ -15,8 +19,13 @@ class MDTApiServiceOptions {
 }
 
 class MdtRequestSettings {
-  final bool camel;
-  const MdtRequestSettings({this.camel = true});
+  bool camel;
+  MdtRequestSettings({this.camel = true});
+}
+
+class MdtRequestOptions {
+  final CancelToken cancelToken;
+  MdtRequestOptions({required this.cancelToken});
 }
 
 class MdtApiClient {
@@ -26,7 +35,8 @@ class MdtApiClient {
   late MdtPasswordModule password;
   late Dio _dio;
 
-  MdtApiClient(String apiUrl, String appUrl, {MDTApiServiceOptions? options}) {
+  MdtApiClient(String apiUrl, String appUrl,
+      {MDTApiServiceOptions? serviceOptions}) {
     this.apiUrl = apiUrl.replaceAll(new RegExp("\/\$"), "");
     this.appUrl = appUrl;
     this.auth = new MdtAuthModule(this);
@@ -36,28 +46,40 @@ class MdtApiClient {
     this._dio.interceptors.add(CookieManager(cookieJar));
   }
 
-  Future<Response<dynamic>> request(String url,
-      {dynamic data, MdtRequestSettings? settings}) async {
-    CancelToken token = CancelToken();
+  Future<Response> request(String url,
+      {dynamic data,
+      MdtRequestSettings? settings,
+      MdtRequestOptions? options}) async {
     dynamic body = null;
 
     if (settings != null && settings.camel) url += "?camel=true";
-    if (data != null) body = convert.jsonEncode(data);
+    if (data != null) body = jsonEncode(data);
+
+    //debugger(message: "qwerty");
 
     return this
         ._dio
         .post("${this.apiUrl}/$url",
             options: Options(headers: requestHeaders),
             data: body,
-            cancelToken: token)
+            cancelToken: options?.cancelToken ?? null)
         .then(MdtApiClient.handleMdtApiError)
         .catchError((err) {
-      token.cancel("Cancel request");
-      if (token != null) {
-        token.cancel();
-      }
       print(err);
     });
+  }
+
+  Future<Response> fetch(
+      {required Query query,
+      String? table,
+      MdtRequestSettings? settings,
+      MdtRequestOptions? options}) {
+    var url = table != null ? '/' + table : '';
+    var data = ApiUrlHelper.query2Str(query);
+    return this
+        .request(url, data: data, settings: settings, options: options)
+        .then((value) => value.data)
+        .then((value) => value);
   }
 
   static Response handleMdtApiError(Response response) {
