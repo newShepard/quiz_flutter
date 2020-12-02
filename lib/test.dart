@@ -14,18 +14,19 @@ void main() async {
 
   var user = await auth.user();
 
-  print("AuthStatus ${authResponse.statusCode}");
+  //print("AuthStatus ${authResponse.statusCode}");
   print("User: ${user}");
+  print(user.email);
 
-  var fetch = await client.request(
-    "fetch/qst.PrincipalCache",
-    data: {
-      "filter": "[ID] eq 415",
-      "select":
-          "FlagAdmin,FlagGetLog,FlagRouteExists,FlagSuperVisor,ID_Position,ID_Employee/*",
-      "table": "qst.PrincipalCache",
-    },
-  );
+  // var fetch = await client.request(
+  //   "fetch/qst.PrincipalCache",
+  //   data: {
+  //     "filter": "[ID] eq 415",
+  //     "select":
+  //         "FlagAdmin,FlagGetLog,FlagRouteExists,FlagSuperVisor,ID_Position,ID_Employee/*",
+  //     "table": "qst.PrincipalCache",
+  //   },
+  // );
 
-  print("cache: ${fetch?.data}");
+  // print("cache: ${fetch?.data}");
 }

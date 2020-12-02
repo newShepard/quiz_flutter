@@ -7,7 +7,7 @@ class UserSettings extends Recordable {
   bool? id_mdt_Principal;
 }
 
-class User extends MdtApiUser {
+class UserData extends MdtApiUser {
   bool? flagAdmin;
   bool? flagGetlog;
   bool? flagRouteExsits;
@@ -15,7 +15,7 @@ class User extends MdtApiUser {
   Employee? employee;
   UserSettings? userSettings;
 
-  User(
+  UserData(
       {this.flagAdmin,
       this.flagGetlog,
       this.flagRouteExsits,

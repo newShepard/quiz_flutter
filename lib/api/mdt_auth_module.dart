@@ -1,7 +1,7 @@
 import 'dart:core';
 import 'package:dio/dio.dart';
 import 'package:quiz_flutter/api/mdt_api_client.dart';
-import 'package:meta/meta.dart';
+import 'package:quiz_flutter/models/mdt_api/user.dart';
 
 class MdtAuthModule {
   final MdtApiClient _mdtApiClient;
@@ -30,7 +30,9 @@ class MdtAuthModule {
     return this._request("security/impersonate", data: {"id": id});
   }
 
-  Future<Response> user() {
-    return this._request("mdt/user");
+  Future<MdtApiUser> user() {
+    return this
+        ._request("mdt/user")
+        .then((value) => MdtApiUser.fromJson(value.data));
   }
 }
