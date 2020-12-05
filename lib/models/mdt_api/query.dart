@@ -8,6 +8,8 @@ class QuerySorting {
   bool? asc;
 
   QuerySorting(this.path, {this.asc});
+
+  Map<String, dynamic> toJson() => _$QuerySortingToJson(this);
 }
 
 @JsonSerializable(createToJson: true, createFactory: false)
@@ -32,4 +34,6 @@ class Query {
       this.skip,
       this.distinct,
       this.params});
+
+  Map<String, dynamic> toJson() => _$QueryToJson(this);
 }
