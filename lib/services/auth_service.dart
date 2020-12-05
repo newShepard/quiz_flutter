@@ -52,7 +52,7 @@ class AuthService {
         )
         .then((value) => FetchResult.fromJson(value.data));
 
-    var result = response.records?[0];
+    var result = response.records[0];
     return Future.value(result);
   }
 }

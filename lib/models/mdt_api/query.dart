@@ -22,7 +22,7 @@ class Query {
   int? top;
   int? skip;
   bool? distinct;
-  Map<String, dynamic>? params;
+  String? params;
 
   Query(
       {this.table,
