@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'filter.dart';
 
 part 'query.g.dart';
 
@@ -17,7 +18,7 @@ class Query {
   String? table;
   List<String?>? select;
   List<QuerySorting?>? sorting;
-  dynamic? filter;
+  Filter? filter;
   bool? count;
   int? top;
   int? skip;

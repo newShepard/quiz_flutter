@@ -38,7 +38,7 @@ class AuthService {
         .fetch(
           query: Query(
             table: 'qst.PrincipalCache',
-            filter: Filter.eq('ID', userId),
+            filter: FilterHelper.eq('ID', userId),
             select: [
               'FlagAdmin',
               'FlagGetLog',
