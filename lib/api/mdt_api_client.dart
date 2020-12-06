@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
@@ -55,8 +56,6 @@ class MdtApiClient {
     if (settings != null && settings.camel) url += "?camel=true";
     if (data != null) body = jsonEncode(data);
 
-    //debugger(message: "qwerty");
-
     return this
         ._dio
         .post("${this.apiUrl}/$url",
@@ -65,6 +64,7 @@ class MdtApiClient {
             cancelToken: options?.cancelToken ?? null)
         .then(MdtApiClient.handleMdtApiError)
         .catchError((err) {
+      err.toString();
       print(err);
     });
   }
@@ -74,12 +74,16 @@ class MdtApiClient {
       String? table,
       MdtRequestSettings? settings,
       MdtRequestOptions? options}) {
-    var url = table != null ? '/' + table : '';
+    var t = table ?? query.table;
+    var url = 'fetch' + (t != null ? '/' + t : '');
     var data = ApiUrlHelper.query2Str(query);
+
     return this
         .request(url, data: data, settings: settings, options: options)
-        .then((value) => value.data)
-        .then((value) => value);
+        .then((value) {
+      //print('Val: $value');
+      return value;
+    }).then((value) => value);
   }
 
   static Response handleMdtApiError(Response response) {
