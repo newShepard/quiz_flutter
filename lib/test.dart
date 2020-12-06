@@ -35,7 +35,20 @@ void main() async {
 
   // // print("cache: ${fetch?.data}");
 
-  dynamic a = ["1", "2", "3"];
-  print(a.runtimeType);
-  if (a is List<num>) print('A is List<String>');
+  // dynamic a = ["1", "2", "3"];
+  // print(a.runtimeType);
+  // if (a is List) print('A is List');
+
+  // var rbl = {"queryIn": "in"};
+  // print(rbl['eq'] ?? 'qwerty');
+
+  // var regex = new RegExp('^.(.*).\$');
+  // var a = regex.allMatches('dfgdfg fdsd fd gfg dgdf (cvbcb)');
+  // print(a.skip(1).take(1).toList().join(''));
+  bool? a = null;
+}
+
+
+String foo (bool? v) {
+
 }
