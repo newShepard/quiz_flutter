@@ -1,6 +1,6 @@
 import 'package:quiz_flutter/api/mdt_api_client.dart';
 import 'package:quiz_flutter/api/mdt_filter_helper.dart';
-import 'package:quiz_flutter/models/mdt_api/fetch_result.dart';
+import 'package:quiz_flutter/models/mdt_api/fetch.dart';
 import 'package:quiz_flutter/models/mdt_api/query.dart';
 import 'package:quiz_flutter/models/mdt_api/user.dart';
 import 'package:quiz_flutter/models/quiz/user.dart';
@@ -52,7 +52,7 @@ class AuthService {
         )
         .then((value) {
       print("FetchValue: $value");
-      return FetchResult.fromJson(value?.data ?? {});
+      return PreparedFetchResult.fromJson(value?.data ?? {});
     });
 
     var result = response?.records?[0];

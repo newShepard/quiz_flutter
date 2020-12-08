@@ -20,7 +20,7 @@ void main() async {
 
   //print("AuthStatus ${authResponse.statusCode}");
   //print("User: ${mdtUser.email}");
-  var userData = await authService.getUserData(mdtUser.id);
+  //var userData = await authService.getUserData(mdtUser.id);
   // print("UserData ${userData.employee}");
 
   // var fetch = await client.request(

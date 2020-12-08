@@ -1,6 +1,3 @@
-import 'dart:developer';
-import 'dart:io';
-
 import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_cookie_manager/dio_cookie_manager.dart';
@@ -81,8 +78,8 @@ class MdtApiClient {
     return this
         .request(url, data: data, settings: settings, options: options)
         .then((value) {
-      //print('Val: $value');
-      return value;
+      print(value?.data);
+      return value.data;
     }).then((value) => value);
   }
 

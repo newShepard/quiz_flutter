@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'fetch_result.dart';
+part of 'fetch.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
@@ -18,11 +18,32 @@ Group _$GroupFromJson(Map<String, dynamic> json) {
   );
 }
 
+FetchDebug _$FetchDebugFromJson(Map<String, dynamic> json) {
+  return FetchDebug(
+    sql: json['sql'] as String,
+    time: json['time'] as int,
+  );
+}
+
 FetchResult<T> _$FetchResultFromJson<T>(
   Map<String, dynamic> json,
   T Function(Object json) fromJsonT,
 ) {
   return FetchResult<T>(
+    custom: json['custom'] as bool,
+    debug: json['debug'] == null
+        ? null
+        : FetchDebug.fromJson(json['debug'] as Map<String, dynamic>),
+    count: json['count'] as int,
+    rows: _dataFromJson(json['rows'] as Map<String, dynamic>),
+  );
+}
+
+PreparedFetchResult<T> _$PreparedFetchResultFromJson<T>(
+  Map<String, dynamic> json,
+  T Function(Object json) fromJsonT,
+) {
+  return PreparedFetchResult<T>(
     records: _dataFromJson(json['records'] as Map<String, dynamic>),
     count: json['count'] as int,
   )..groups = (json['groups'] as List)
