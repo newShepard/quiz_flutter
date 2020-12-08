@@ -17,7 +17,7 @@ void main() async {
   var mdtUser = await auth.user();
 
   var userData = await authService.getUserData(mdtUser.id);
-  print("UserData ${userData.employee}");
+  //print("UserData ${userData.employee}");
 
   // print("cache: ${fetch?.data}");
 }

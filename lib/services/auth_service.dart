@@ -34,7 +34,7 @@ class AuthService {
   }
 
   Future<UserData> getUserData(int? userId) async {
-    var response = await this
+    return await this
         .mdtApiClient
         .fetch(
           query: Query(
@@ -52,13 +52,8 @@ class AuthService {
           ),
         )
         .then((value) {
-      print('getUserData: ${value}');
-      return null;
+      var r = value.records?[0] ?? {};
+      return UserData();
     });
-    //var result = response?.records?[0] ?? "nothing";
-    return Future.value(UserData(
-        flagAdmin: true,
-        flagGetlog: false,
-        employee: Employee(positionName: 'customer')));
   }
 }

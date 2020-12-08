@@ -74,7 +74,7 @@ class MdtApiClient {
     });
   }
 
-  Future<Response> fetch(
+  Future<PreparedFetchResult<T>> fetch<T>(
       {required Query query,
       String? table,
       MdtRequestSettings? settings = const MdtRequestSettings(camel: true),
@@ -87,11 +87,24 @@ class MdtApiClient {
         .request(url, data: data, settings: settings, options: options)
         .then((value) {
       var t = value.data?[0];
-      //print(t);
-      var c = FetchResult<UserData>.fromJson(t);
-      print('FetchResult: ${c.rows?.map((e) => e)}');
-      return value;
+      var fr = FetchResult.fromJson(t);
+      return preparedFetchResult<T>(t);
     });
+  }
+
+  //
+  PreparedFetchResult<T> preparedFetchResult<T>(dynamic data) {
+    var dataMap = Map.from(data);
+    var json = new Map<String, dynamic>();
+
+    dataMap.keys.forEach((key) {
+      json[key.toString().toLowerCase()] = dataMap[key];
+    });
+
+    var m = {"count": json['count'], "records": json['rows']};
+    return PreparedFetchResult<T>.fromJson(m);
+
+    //var preparedFetchResult = PreparedFetchResult.fromJson(json);
   }
 
   static Response handleMdtApiError(Response response) {

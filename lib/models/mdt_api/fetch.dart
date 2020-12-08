@@ -47,9 +47,8 @@ class FetchResult<T> {
 @JsonSerializable(createToJson: false, genericArgumentFactories: true)
 class PreparedFetchResult<T> {
   @JsonKey(fromJson: _dataFromJson)
-  List<T> records;
+  List<T>? records;
   int count;
-  List<Group?>? groups;
 
   PreparedFetchResult({required this.records, required this.count});
 

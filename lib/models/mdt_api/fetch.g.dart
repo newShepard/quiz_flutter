@@ -44,9 +44,7 @@ PreparedFetchResult<T> _$PreparedFetchResultFromJson<T>(
   T Function(Object json) fromJsonT,
 ) {
   return PreparedFetchResult<T>(
-    records: _dataFromJson(json['records'] as List<dynamic>),
+    records: _dataFromJson(json['records'] as List<T>),
     count: json['count'] as int,
-  )..groups = (json['groups'] as List)
-      ?.map((e) => e == null ? null : Group.fromJson(e as Map<String, dynamic>))
-      ?.toList();
+  );
 }
