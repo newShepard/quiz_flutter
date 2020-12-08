@@ -3,6 +3,7 @@ import 'package:quiz_flutter/api/mdt_filter_helper.dart';
 import 'package:quiz_flutter/models/mdt_api/fetch.dart';
 import 'package:quiz_flutter/models/mdt_api/query.dart';
 import 'package:quiz_flutter/models/mdt_api/user.dart';
+import 'package:quiz_flutter/models/quiz/employee.dart';
 import 'package:quiz_flutter/models/quiz/user.dart';
 
 typedef Future<void>? AuthServuceInitCb(UserData user);
@@ -51,11 +52,13 @@ class AuthService {
           ),
         )
         .then((value) {
-      print("FetchValue: $value");
-      return PreparedFetchResult.fromJson(value?.data ?? {});
+      print('getUserData: ${value}');
+      return null;
     });
-
-    var result = response?.records?[0];
-    return Future.value(result);
+    //var result = response?.records?[0] ?? "nothing";
+    return Future.value(UserData(
+        flagAdmin: true,
+        flagGetlog: false,
+        employee: Employee(positionName: 'customer')));
   }
 }

@@ -14,24 +14,10 @@ void main() async {
   var authResponse = await auth.signIn(
       login: "svoinkov", password: "rB12rb", rememberMe: true);
 
-  //print("AuthResponse: ${authResponse}");
-
   var mdtUser = await auth.user();
 
-  //print("AuthStatus ${authResponse.statusCode}");
-  //print("User: ${mdtUser.email}");
-  //var userData = await authService.getUserData(mdtUser.id);
-  // print("UserData ${userData.employee}");
-
-  // var fetch = await client.request(
-  //   "fetch/qst.PrincipalCache",
-  //   data: {
-  //     "filter": "[ID] eq 415",
-  //     "select":
-  //         "FlagAdmin,FlagGetLog,FlagRouteExists,FlagSuperVisor,ID_Position,ID_Employee/*",
-  //     "table": "qst.PrincipalCache",
-  //   },
-  // );
+  var userData = await authService.getUserData(mdtUser.id);
+  print("UserData ${userData.employee}");
 
   // print("cache: ${fetch?.data}");
 }

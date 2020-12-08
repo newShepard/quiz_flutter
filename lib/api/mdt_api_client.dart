@@ -6,7 +6,9 @@ import 'package:quiz_flutter/api/mdt_auth_module.dart';
 import 'package:quiz_flutter/api/mdt_password_module.dart';
 import 'dart:convert';
 import 'package:quiz_flutter/models/mdt_api/error_data.dart';
+import 'package:quiz_flutter/models/mdt_api/fetch.dart';
 import 'package:quiz_flutter/models/mdt_api/query.dart';
+import 'package:quiz_flutter/models/quiz/user.dart';
 
 typedef void OnRequestError(dynamic err, String url, dynamic data);
 final Map<String, String> requestHeaders = {"Content-Type": "application/json"};
@@ -17,8 +19,8 @@ class MDTApiServiceOptions {
 }
 
 class MdtRequestSettings {
-  bool camel;
-  MdtRequestSettings({this.camel = true});
+  final bool camel;
+  const MdtRequestSettings({this.camel = true});
 }
 
 class MdtRequestOptions {
@@ -50,26 +52,32 @@ class MdtApiClient {
       MdtRequestOptions? options}) async {
     dynamic body = null;
 
+    print('Settings: ${settings}');
+
     if (settings != null && settings.camel) url += "?camel=true";
     if (data != null) body = jsonEncode(data);
 
+    print("${this.apiUrl}/$url");
+
     return this
         ._dio
-        .post("${this.apiUrl}/$url",
-            options: Options(headers: requestHeaders),
-            data: body,
-            cancelToken: options?.cancelToken ?? null)
+        .post(
+          "${this.apiUrl}/$url",
+          options: Options(headers: requestHeaders),
+          data: body,
+          cancelToken: options?.cancelToken ?? null,
+        )
         .then(MdtApiClient.handleMdtApiError)
         .catchError((err) {
-      err.toString();
-      print(err);
+      print('ERROR!!!: ${err}');
+      throw err;
     });
   }
 
   Future<Response> fetch(
       {required Query query,
       String? table,
-      MdtRequestSettings? settings,
+      MdtRequestSettings? settings = const MdtRequestSettings(camel: true),
       MdtRequestOptions? options}) {
     var t = table ?? query.table;
     var url = 'fetch' + (t != null ? '/' + t : '');
@@ -78,9 +86,12 @@ class MdtApiClient {
     return this
         .request(url, data: data, settings: settings, options: options)
         .then((value) {
-      print(value?.data);
-      return value.data;
-    }).then((value) => value);
+      var t = value.data?[0];
+      //print(t);
+      var c = FetchResult<UserData>.fromJson(t);
+      print('FetchResult: ${c.rows?.map((e) => e)}');
+      return value;
+    });
   }
 
   static Response handleMdtApiError(Response response) {

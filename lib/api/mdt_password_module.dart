@@ -18,7 +18,7 @@ class MdtPasswordModule {
 
   Future<Response> _request(String url_path,
       {Map<String, dynamic>? data,
-      MdtRequestSettings? settings,
+      MdtRequestSettings? settings = const MdtRequestSettings(camel: true),
       MdtRequestOptions? options}) {
     return this
         ._mdtApiClient

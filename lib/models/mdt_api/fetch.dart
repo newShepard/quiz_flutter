@@ -17,7 +17,7 @@ class Group {
 @JsonSerializable(createToJson: false)
 class FetchDebug {
   String? sql;
-  int? time;
+  double? time;
 
   FetchDebug({this.sql, this.time});
 
@@ -39,6 +39,9 @@ class FetchResult<T> {
   List<T>? rows;
 
   FetchResult({this.custom, this.debug, this.count, this.rows});
+
+  factory FetchResult.fromJson(Map<String, dynamic> json) =>
+      _$FetchResultFromJson(json, (json) => json as T);
 }
 
 @JsonSerializable(createToJson: false, genericArgumentFactories: true)
@@ -54,4 +57,4 @@ class PreparedFetchResult<T> {
       _$PreparedFetchResultFromJson(json, (json) => json as T);
 }
 
-T _dataFromJson<T>(Map<String, dynamic> json) => json as T;
+T _dataFromJson<T>(List<dynamic> json) => json as T;

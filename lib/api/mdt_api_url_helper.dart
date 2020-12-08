@@ -102,29 +102,31 @@ class ApiUrlHelper {
   }
 
   static String? argToString({dynamic? arg, bool? isFirst, String? op}) {
-    return (isFirst ?? false) ? arg : ApiUrlHelper._valueToString();
+    return (isFirst ?? false)
+        ? arg
+        : ApiUrlHelper._valueToString(arg: arg, op: op);
   }
 
   static String? _valueToString({dynamic? arg, String? op}) {
-    if (arg != null && arg['table'] != null) {
-      var tres = arg['table'] + ':' + arg['field'];
-      if (arg['filter'] != null && arg['args'] != null) {
-        tres += ', ' +
-            (arg['filter']
-                ? ApiUrlHelper.filterToString(arg['filter'], arg['table'])
-                    as String
-                : 'null');
-      }
-      if (arg['args'] != null) {
-        tres += ', ' +
-            '(' +
-            (arg['args']
-                ? ApiUrlHelper.argToString(arg: arg['args']) as String
-                : '') +
-            ')';
-      }
-      return tres;
-    }
+    // if (arg != null && arg['table'] != null) {
+    //   var tres = arg['table'] + ':' + arg['field'];
+    //   if (arg['filter'] != null && arg['args'] != null) {
+    //     tres += ', ' +
+    //         (arg['filter']
+    //             ? ApiUrlHelper.filterToString(arg['filter'], arg['table'])
+    //                 as String
+    //             : 'null');
+    //   }
+    //   if (arg['args'] != null) {
+    //     tres += ', ' +
+    //         '(' +
+    //         (arg['args']
+    //             ? ApiUrlHelper.argToString(arg: arg['args']) as String
+    //             : '') +
+    //         ')';
+    //   }
+    //   return tres;
+    // }
 
     var res = (arg is String?) && (arg)?.split('').first == '#' && op == 'in'
         ? arg
