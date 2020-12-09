@@ -87,7 +87,7 @@ class MdtApiClient {
         .request(url, data: data, settings: settings, options: options)
         .then((value) {
       var t = value.data?[0];
-      var fr = FetchResult.fromJson(t);
+      //var fr = FetchResult.fromJson(t);
       return preparedFetchResult<T>(t);
     });
   }

@@ -21,7 +21,7 @@ Group _$GroupFromJson(Map<String, dynamic> json) {
 FetchDebug _$FetchDebugFromJson(Map<String, dynamic> json) {
   return FetchDebug(
     sql: json['sql'] as String,
-    time: json['time'] as double,
+    time: (json['time'] as num)?.toDouble(),
   );
 }
 
@@ -35,7 +35,7 @@ FetchResult<T> _$FetchResultFromJson<T>(
         ? null
         : FetchDebug.fromJson(json['debug'] as Map<String, dynamic>),
     count: json['count'] as int,
-    rows: _dataFromJson(json['rows'] as List<T>),
+    rows: _dataFromJson(json['rows'] as List),
   );
 }
 
@@ -44,7 +44,7 @@ PreparedFetchResult<T> _$PreparedFetchResultFromJson<T>(
   T Function(Object json) fromJsonT,
 ) {
   return PreparedFetchResult<T>(
-    records: _dataFromJson(json['records'] as List<T>),
+    records: _dataFromJson(json['records'] as List),
     count: json['count'] as int,
   );
 }

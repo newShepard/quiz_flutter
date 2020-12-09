@@ -3,10 +3,10 @@ import 'package:quiz_flutter/api/mdt_filter_helper.dart';
 import 'package:quiz_flutter/models/mdt_api/fetch.dart';
 import 'package:quiz_flutter/models/mdt_api/query.dart';
 import 'package:quiz_flutter/models/mdt_api/user.dart';
-import 'package:quiz_flutter/models/quiz/employee.dart';
+import 'package:quiz_flutter/models/mdt_api/employee.dart';
 import 'package:quiz_flutter/models/quiz/user.dart';
 
-typedef Future<void>? AuthServuceInitCb(UserData user);
+typedef Future<void>? AuthServuceInitCb(QuizUser user);
 
 class AuthServiceOptions {
   AuthServuceInitCb? init;
@@ -16,14 +16,14 @@ class AuthServiceOptions {
 class AuthService {
   MdtApiClient mdtApiClient;
   AuthServiceOptions? options;
-  UserData? user;
+  QuizUser? user;
   AuthService({required this.mdtApiClient, this.options}) {
     this.user = null;
   }
 
   Future<void> init() async {
     var mdtUser = await this.mdtApiClient.auth.user();
-    UserData? userData = null;
+    QuizUser? userData = null;
     if (this.isUserLoggedIn(mdtUser)) {
       userData = await getUserData(mdtUser.id);
     }
@@ -33,7 +33,7 @@ class AuthService {
     return user.isAnonymous == false;
   }
 
-  Future<UserData> getUserData(int? userId) async {
+  Future<QuizUser> getUserData(int? userId) async {
     return await this
         .mdtApiClient
         .fetch(
@@ -53,7 +53,8 @@ class AuthService {
         )
         .then((value) {
       var r = value.records?[0] ?? {};
-      return UserData();
+      print(r);
+      return QuizUser();
     });
   }
 }

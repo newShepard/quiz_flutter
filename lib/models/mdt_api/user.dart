@@ -2,7 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'user.g.dart';
 
-@JsonSerializable(createToJson: false)
+@JsonSerializable()
 class MdtApiUserSettings {
   String? table = 'qst.UserSettings';
   num? $id;
@@ -15,8 +15,7 @@ class MdtApiUserSettings {
       _$MdtApiUserSettingsFromJson(json);
 }
 
-@JsonSerializable(createToJson: false)
-class MdtApiUser {
+mixin MdtApiUserMixin {
   int? id;
   String? fullName;
   String? email;
@@ -26,17 +25,11 @@ class MdtApiUser {
   List<String>? roles;
   int? languageId;
   bool? isImpersonated;
+}
 
-  MdtApiUser(
-      {this.id,
-      this.fullName,
-      this.email,
-      this.identityName,
-      this.isAdmin,
-      this.isAnonymous,
-      this.roles,
-      this.languageId,
-      this.isImpersonated});
+@JsonSerializable()
+class MdtApiUser with MdtApiUserMixin {
+  MdtApiUser();
 
   factory MdtApiUser.fromJson(Map<String, dynamic> json) =>
       _$MdtApiUserFromJson(json);

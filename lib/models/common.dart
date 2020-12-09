@@ -1,14 +1,11 @@
-abstract class Recordable {
+mixin Recordable {
   int? id;
-  Recordable({this.id});
 }
 
-abstract class Sortable {
+mixin Sortable {
   int? sortOtder;
-  Sortable({this.sortOtder});
 }
 
-abstract class Nameable {
+mixin Nameable {
   String? name;
-  Nameable({this.name});
 }
