@@ -23,14 +23,55 @@ class AuthService {
   Future<void> init() async {
     var mdtUser = await this.mdtApiClient.auth.user();
     QuizUser? userData = null;
-    if (this.isUserLoggedIn(mdtUser)) {
+    if (this.isUserLoggedIn(userData)) {
       //userData = await getPrincipal(mdtUser.id);
     }
   }
 
-  bool isUserLoggedIn(MdtApiUser user) {
-    return user.isAnonymous == false;
+  Future<void> signIn({required String login, required String password}) async {
+    await this
+        .mdtApiClient
+        .auth
+        .signIn(login: login, password: password, rememberMe: true);
+    await this.init();
   }
+
+  Future<void> signOut() async {
+    await this.mdtApiClient.auth.signOut();
+    await this.init();
+  }
+
+  Future<void> forgotPassword({required String login}) async {
+    await this.mdtApiClient.password.sendForgotPassword(login: login);
+  }
+
+  Future<void> setPassword() async {}
+
+  Future<void> changePassword() async {}
+
+  bool? isLoggedIn() {
+    return this.isUserLoggedIn(this.user);
+  }
+
+  bool? isSupervisor() {
+    return this.user?.flagSuperVisor;
+  }
+
+  bool? hasAccessToQuiz() {
+    var user = this.user;
+    //return user?.roles.any((element) => false)
+    return true;
+  }
+
+  bool? isUserLoggedIn(QuizUser? user) {
+    return user?.isAnonymous == false;
+  }
+
+  Future<void> getLoginData() async {
+    //
+  }
+
+  Future<void> registerUser() async {}
 
   Future<MdtApiPrincipal> getPrincipal(int? userId) async {
     return await this
