@@ -1,19 +1,13 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'filter.dart';
 
-//part 'query.g.dart';
-
-//@JsonSerializable(createToJson: true)
 class QuerySorting {
   String path;
   bool? asc;
 
   QuerySorting(this.path, {this.asc});
-
-  //Map<String, dynamic> toJson() => _$QuerySortingToJson(this);
 }
 
-//@JsonSerializable(createToJson: true)
 class Query {
   String? table;
   List<String?>? select;
@@ -35,6 +29,4 @@ class Query {
       this.skip,
       this.distinct,
       this.params});
-
-  //Map<String, dynamic> toJson() => _$QueryToJson(this);
 }

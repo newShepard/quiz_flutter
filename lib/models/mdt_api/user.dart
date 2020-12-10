@@ -15,7 +15,7 @@ class MdtApiUserSettings {
       _$MdtApiUserSettingsFromJson(json);
 }
 
-mixin MdtApiUserMixin {
+abstract class AbstractMdtApiUser {
   int? id;
   String? fullName;
   String? email;
@@ -28,7 +28,7 @@ mixin MdtApiUserMixin {
 }
 
 @JsonSerializable()
-class MdtApiUser with MdtApiUserMixin {
+class MdtApiUser with AbstractMdtApiUser {
   MdtApiUser();
 
   factory MdtApiUser.fromJson(Map<String, dynamic> json) =>

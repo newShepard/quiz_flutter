@@ -15,7 +15,7 @@ class UserSettings with Recordable {
       _$UserSettingsFromJson(json);
 }
 
-mixin MdtApiPrincipalMixin {
+abstract class AbstractMdtApiPrincipal {
   bool? flagAdmin;
   bool? flagGetlog;
   bool? flagRouteExsits;
@@ -29,7 +29,7 @@ mixin MdtApiPrincipalMixin {
 }
 
 @JsonSerializable()
-class MdtApiPrincipal with MdtApiPrincipalMixin {
+class MdtApiPrincipal with AbstractMdtApiPrincipal {
   MdtApiPrincipal();
 
   factory MdtApiPrincipal.fromJson(Map<String, dynamic> json) =>

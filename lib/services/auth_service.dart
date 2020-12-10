@@ -1,9 +1,8 @@
 import 'package:quiz_flutter/api/mdt_api_client.dart';
 import 'package:quiz_flutter/api/mdt_filter_helper.dart';
-import 'package:quiz_flutter/models/mdt_api/fetch.dart';
+import 'package:quiz_flutter/models/mdt_api/principal.dart';
 import 'package:quiz_flutter/models/mdt_api/query.dart';
 import 'package:quiz_flutter/models/mdt_api/user.dart';
-import 'package:quiz_flutter/models/mdt_api/employee.dart';
 import 'package:quiz_flutter/models/quiz/user.dart';
 
 typedef Future<void>? AuthServuceInitCb(QuizUser user);
@@ -25,7 +24,7 @@ class AuthService {
     var mdtUser = await this.mdtApiClient.auth.user();
     QuizUser? userData = null;
     if (this.isUserLoggedIn(mdtUser)) {
-      userData = await getUserData(mdtUser.id);
+      //userData = await getPrincipal(mdtUser.id);
     }
   }
 
@@ -33,7 +32,7 @@ class AuthService {
     return user.isAnonymous == false;
   }
 
-  Future<QuizUser> getUserData(int? userId) async {
+  Future<MdtApiPrincipal> getPrincipal(int? userId) async {
     return await this
         .mdtApiClient
         .fetch(
@@ -51,10 +50,6 @@ class AuthService {
             ],
           ),
         )
-        .then((value) {
-      var r = value.records?[0] ?? {};
-      print(r);
-      return QuizUser();
-    });
+        .then((value) => MdtApiPrincipal.fromJson(value.records?[0]));
   }
 }
