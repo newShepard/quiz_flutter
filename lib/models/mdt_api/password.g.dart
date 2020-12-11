@@ -6,13 +6,6 @@ part of 'password.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-CheckRegistrationResponse _$CheckRegistrationResponseFromJson(
-    Map<String, dynamic> json) {
-  return CheckRegistrationResponse(
-    enabled: json['enabled'] as bool,
-  );
-}
-
 Map<String, dynamic> _$ChangePasswordDataToJson(ChangePasswordData instance) =>
     <String, dynamic>{
       'oldPassword': instance.oldPassword,

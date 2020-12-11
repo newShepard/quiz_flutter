@@ -4,9 +4,9 @@ import 'package:quiz_flutter/models/quiz/user.dart';
 
 class UserService {
   QuizUser? user;
-  late bool privacyPolicyAccepted;
   MdtApiClient mdtApiClient;
   MdtAuthModule mdtAuthModule;
+  late bool privacyPolicyAccepted;
 
   UserService({required this.mdtApiClient, required this.mdtAuthModule}) {
     this.privacyPolicyAccepted = true;

@@ -43,5 +43,5 @@ class UserRegistrationData {
 
   UserRegistrationData({required this.code, required this.email, this.title});
 
-  Map<String, dynamic> toJson() => _$UserRegisrationDataToJson(this);
+  Map<String, dynamic> toJson() => _$UserRegistrationDataToJson(this);
 }

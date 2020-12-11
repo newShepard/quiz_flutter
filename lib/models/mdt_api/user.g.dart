@@ -48,7 +48,7 @@ Map<String, dynamic> _$MdtApiUserToJson(MdtApiUser instance) =>
       'isImpersonated': instance.isImpersonated,
     };
 
-Map<String, dynamic> _$UserRegisrationDataToJson(
+Map<String, dynamic> _$UserRegistrationDataToJson(
         UserRegistrationData instance) =>
     <String, dynamic>{
       'code': instance.code,

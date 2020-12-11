@@ -14,12 +14,15 @@ void main() async {
   var pass = new MdtPasswordModule(client);
   var authService = new AuthService(mdtApiClient: client);
 
-  var authResponse = await auth.signIn(
-      login: "svoinkov", password: "rB12rb", rememberMe: true);
+  // var r = await pass.checkRegistration();
+  // print('Registration Enabled: ${r.enabled}');
 
-  var mdtUser = await auth.user();
-  var mdtPrincipal = await authService.getPrincipal(mdtUser.id);
+  // var authResponse = await auth.signIn(
+  //     login: "svoinkov", password: "rB12rb", rememberMe: true);
 
-  var user = QuizUser.create(mdtUser, mdtPrincipal);
-  print(user.employee?.name);
+  // var mdtUser = await auth.user();
+  // var mdtPrincipal = await authService.getPrincipal(mdtUser.id);
+
+  // var user = QuizUser.create(mdtUser, mdtPrincipal);
+  // print(user.employee?.name);
 }

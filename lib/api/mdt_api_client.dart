@@ -52,8 +52,6 @@ class MdtApiClient {
       MdtRequestOptions? options}) async {
     dynamic body = null;
 
-    print('Settings: ${settings}');
-
     if (settings != null && settings.camel) url += "?camel=true";
     if (data != null) body = jsonEncode(data);
 
@@ -102,6 +100,7 @@ class MdtApiClient {
     });
 
     var m = {"count": json['count'], "records": json['rows']};
+
     return PreparedFetchResult<T>.fromJson(m);
 
     //var preparedFetchResult = PreparedFetchResult.fromJson(json);

@@ -22,7 +22,7 @@ class AuthService {
 
   Future<void> init() async {
     var mdtUser = await this.mdtApiClient.auth.user();
-    QuizUser? userData = null;
+    // QuizUser? userData = QuizUser.create(mdtUser, MdtApiPrincipal());
     // if (this.isUserLoggedIn(userData)) {
     //   //userData = await getPrincipal(mdtUser.id);
     // }
@@ -91,6 +91,9 @@ class AuthService {
             ],
           ),
         )
-        .then((value) => MdtApiPrincipal.fromJson(value.records?[0]));
+        .then((value) {
+      var val = value.records?[0];
+      return MdtApiPrincipal.fromJson(val);
+    });
   }
 }

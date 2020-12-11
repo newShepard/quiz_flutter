@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:quiz_flutter/api/mdt_api_client.dart';
 import 'package:meta/meta.dart';
+import 'package:quiz_flutter/models/mdt_api/auth.dart';
 import 'package:quiz_flutter/models/mdt_api/password.dart';
 import 'package:quiz_flutter/models/mdt_api/user.dart';
 import 'package:quiz_flutter/utils/utils.dart';
@@ -26,9 +27,10 @@ class MdtPasswordModule {
         .request(url_path, data: data, settings: settings, options: options);
   }
 
-  Future<CheckRegistrationResponse> checkRegistration() {
-    return this._request('password/checkregistration').then((value) =>
-        CheckRegistrationResponse.fromJson(jsonDecode(value.toString())));
+  Future<AuthData> checkRegistration() {
+    return this
+        ._request('password/checkregistration')
+        .then((value) => AuthData.fromJson(jsonDecode(value.toString())));
   }
 
   Future<Response> register({required UserRegistrationData data}) {
