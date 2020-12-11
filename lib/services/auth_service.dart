@@ -23,9 +23,9 @@ class AuthService {
   Future<void> init() async {
     var mdtUser = await this.mdtApiClient.auth.user();
     QuizUser? userData = null;
-    if (this.isUserLoggedIn(userData)) {
-      //userData = await getPrincipal(mdtUser.id);
-    }
+    // if (this.isUserLoggedIn(userData)) {
+    //   //userData = await getPrincipal(mdtUser.id);
+    // }
   }
 
   Future<void> signIn({required String login, required String password}) async {

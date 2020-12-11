@@ -34,3 +34,14 @@ class MdtApiUser with AbstractMdtApiUser {
   factory MdtApiUser.fromJson(Map<String, dynamic> json) =>
       _$MdtApiUserFromJson(json);
 }
+
+@JsonSerializable(createFactory: false)
+class UserRegistrationData {
+  final String code;
+  final String email;
+  String? title;
+
+  UserRegistrationData({required this.code, required this.email, this.title});
+
+  Map<String, dynamic> toJson() => _$UserRegisrationDataToJson(this);
+}

@@ -47,3 +47,11 @@ Map<String, dynamic> _$MdtApiUserToJson(MdtApiUser instance) =>
       'languageId': instance.languageId,
       'isImpersonated': instance.isImpersonated,
     };
+
+Map<String, dynamic> _$UserRegisrationDataToJson(
+        UserRegistrationData instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'email': instance.email,
+      'title': instance.title,
+    };
