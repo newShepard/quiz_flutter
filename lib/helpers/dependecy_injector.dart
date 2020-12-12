@@ -8,6 +8,7 @@ import 'package:quiz_flutter/services/auth_service.dart';
 final GetIt sl = GetIt.asNewInstance();
 
 Future<void> injectDependencies() async {
+  // api clients
   sl.registerSingleton<MdtApiClient>(MdtApiClient());
   sl.registerSingleton<MdtAuthClient>(MdtAuthClient());
   sl.registerSingleton<MdtPasswordClient>(MdtPasswordClient());

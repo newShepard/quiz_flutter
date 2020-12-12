@@ -51,7 +51,7 @@ class MdtPasswordClient {
 
   Future<Response> changePassword(
       {required ChangePasswordData data, required bool reset}) {
-    var method = reset == true ? 'resetPassword' : 'changePassword';
+    var method = reset ? 'resetPassword' : 'changePassword';
     var urlParams = Utils.getUrlParams(data.toJson());
     return this._request('security/${method}?${urlParams}');
   }

@@ -2,6 +2,7 @@ import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_cookie_manager/dio_cookie_manager.dart';
 import 'package:quiz_flutter/api/mdt_api_url_helper.dart';
+import 'package:quiz_flutter/errors/errors.dart';
 import 'dart:convert';
 import 'package:quiz_flutter/models/mdt_api/error_data.dart';
 import 'package:quiz_flutter/models/mdt_api/fetch.dart';
@@ -107,24 +108,5 @@ class MdtApiClient {
 
   static bool isApiError(dynamic data) {
     return data["Message"] != null;
-  }
-}
-
-class MdtApiError extends Error {
-  late String name;
-  String? message;
-  String? code;
-  dynamic? args;
-
-  MdtApiError(MdtApiErrorData data) {
-    this.name = "MDT API Error";
-    this.message = data.message;
-    this.code = data.code;
-    this.args = data.args;
-  }
-
-  @override
-  String toString() {
-    return "${this.name}: ${this.message}";
   }
 }
