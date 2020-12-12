@@ -2,10 +2,15 @@ import 'dart:core';
 import 'package:dio/dio.dart';
 import 'package:quiz_flutter/api/mdt_api_client.dart';
 import 'package:quiz_flutter/models/mdt_api/user.dart';
+import 'package:quiz_flutter/services/app_service.dart';
 
 class MdtAuthClient {
-  final MdtApiClient _mdtApiClient;
-  MdtAuthClient(this._mdtApiClient);
+  late final MdtApiClient _mdtApiClient;
+
+  MdtAuthClient() {
+    print('auth');
+    this._mdtApiClient = mdtApiClient;
+  }
 
   Future<Response> _request(String url_path,
       {Map<String, dynamic>? data,

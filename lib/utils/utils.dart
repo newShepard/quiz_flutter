@@ -1,9 +1,8 @@
-import 'package:flutter/foundation.dart' as foundation;
+import 'dart:io' show Platform;
 
-bool get isIos =>
-    foundation.defaultTargetPlatform == foundation.TargetPlatform.iOS;
-bool get isAndroid =>
-    foundation.defaultTargetPlatform == foundation.TargetPlatform.android;
+bool get isIos => Platform.isIOS;
+bool get isAndroid => Platform.isAndroid;
+bool get isMacos => Platform.isMacOS;
 
 class Utils {
   static String getUrlParams(Map<String, dynamic> params) {

@@ -5,14 +5,17 @@ import 'package:meta/meta.dart';
 import 'package:quiz_flutter/models/mdt_api/auth.dart';
 import 'package:quiz_flutter/models/mdt_api/password.dart';
 import 'package:quiz_flutter/models/mdt_api/user.dart';
+import 'package:quiz_flutter/services/app_service.dart';
 import 'package:quiz_flutter/utils/utils.dart';
 
 final String passwordUrl = '/password/:key';
 
 class MdtPasswordClient {
-  final MdtApiClient _mdtApiClient;
+  late final MdtApiClient _mdtApiClient;
 
-  MdtPasswordClient(this._mdtApiClient);
+  MdtPasswordClient() {
+    this._mdtApiClient = mdtApiClient;
+  }
 
   String _getPasswordUrl() {
     return this._mdtApiClient.appUrl + '/#!' + passwordUrl;
