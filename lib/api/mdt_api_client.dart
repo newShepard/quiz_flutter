@@ -83,7 +83,6 @@ class MdtApiClient {
     });
   }
 
-  //
   PreparedFetchResult<T> preparedFetchResult<T>(dynamic data) {
     var dataMap = Map.from(data);
     var json = new Map<String, dynamic>();
