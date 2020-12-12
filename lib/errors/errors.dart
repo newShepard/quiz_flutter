@@ -1,10 +1,20 @@
 import 'package:quiz_flutter/models/mdt_api/error_data.dart';
 
-class MdtApiError extends Error {
-  late final String name;
-  late final String? message;
-  late final String? code;
-  late final dynamic? args;
+abstract class QuizError extends Error {
+  late String name;
+  String? message;
+
+  @override
+  String toString() {
+    var string = '${this.name}';
+    if (this.message != null) string = string += ': ${this.message}';
+    return string;
+  }
+}
+
+class MdtApiError extends QuizError {
+  String? code;
+  dynamic? args;
 
   MdtApiError(MdtApiErrorData data) {
     this.name = 'MDT API Error';
@@ -12,20 +22,11 @@ class MdtApiError extends Error {
     this.code = data.code;
     this.args = data.args;
   }
-
-  @override
-  String toString() => '${this.name}: ${this.message}';
 }
 
-class OfflineError extends Error {
-  late final String name;
-  late final String message;
-
+class OfflineError extends QuizError {
   OfflineError() {
     this.name = 'Offline error';
     this.message = 'Check your internet connection';
   }
-
-  @override
-  String toString() => '${this.name}: ${this.message}';
 }
