@@ -24,36 +24,31 @@ class FetchDebug {
   factory FetchDebug.fromJson(Map<String, dynamic> json) =>
       _$FetchDebugFromJson(json);
 }
-// @JsonSerializable(createToJson: false)
-// class Items {
 
-// }
-
-@JsonSerializable(createToJson: false, genericArgumentFactories: true)
+@JsonSerializable(createToJson: false)
 class FetchResult<T> {
   bool? custom;
   FetchDebug? debug;
-  //items?
   int? count;
-  @JsonKey(fromJson: _dataFromJson)
-  List<T>? rows;
+  //@JsonKey(fromJson: _dataFromJson)
+  List<dynamic> rows;
 
-  FetchResult({this.custom, this.debug, this.count, this.rows});
+  FetchResult({this.custom, this.debug, this.count, required this.rows});
 
   factory FetchResult.fromJson(Map<String, dynamic> json) =>
-      _$FetchResultFromJson(json, (json) => json as T);
+      _$FetchResultFromJson(json);
 }
 
-@JsonSerializable(createToJson: false, genericArgumentFactories: true)
+@JsonSerializable(createToJson: false)
 class PreparedFetchResult<T> {
-  @JsonKey(fromJson: _dataFromJson)
-  List<T>? records;
+  //@JsonKey(fromJson: _dataFromJson)
+  List<dynamic> records;
   int count;
 
   PreparedFetchResult({required this.records, required this.count});
 
   factory PreparedFetchResult.fromJson(Map<String, dynamic> json) =>
-      _$PreparedFetchResultFromJson(json, (json) => json as T);
+      _$PreparedFetchResultFromJson(json);
 }
 
-T _dataFromJson<T>(List<dynamic> json) => json as T;
+//T _dataFromJson<T>(List<dynamic> json) => json as T;

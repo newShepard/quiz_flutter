@@ -1,6 +1,7 @@
 // @dart=2.9
 import 'package:quiz_flutter/api/mdt_api_client.dart';
 import 'package:quiz_flutter/api/mdt_auth_module.dart';
+import 'package:quiz_flutter/models/mdt_api/principal.dart';
 import 'package:quiz_flutter/models/mdt_api/user.dart';
 import 'package:quiz_flutter/models/mdt_api/employee.dart';
 import 'package:quiz_flutter/services/auth_service.dart';
@@ -14,15 +15,9 @@ void main() async {
   var pass = new MdtPasswordModule(client);
   var authService = new AuthService(mdtApiClient: client);
 
-  // var r = await pass.checkRegistration();
-  // print('Registration Enabled: ${r.enabled}');
+  var authResponse = await auth.signIn(
+      login: "svoinkov", password: "rB12rb", rememberMe: true);
 
-  // var authResponse = await auth.signIn(
-  //     login: "svoinkov", password: "rB12rb", rememberMe: true);
-
-  // var mdtUser = await auth.user();
-  // var mdtPrincipal = await authService.getPrincipal(mdtUser.id);
-
-  // var user = QuizUser.create(mdtUser, mdtPrincipal);
-  // print(user.employee?.name);
+  var mdtUser = await auth.user();
+  var mdtPrincipal = await authService.getPrincipal(mdtUser.id);
 }

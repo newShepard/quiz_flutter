@@ -25,26 +25,21 @@ FetchDebug _$FetchDebugFromJson(Map<String, dynamic> json) {
   );
 }
 
-FetchResult<T> _$FetchResultFromJson<T>(
-  Map<String, dynamic> json,
-  T Function(Object json) fromJsonT,
-) {
+FetchResult<T> _$FetchResultFromJson<T>(Map<String, dynamic> json) {
   return FetchResult<T>(
     custom: json['custom'] as bool,
     debug: json['debug'] == null
         ? null
         : FetchDebug.fromJson(json['debug'] as Map<String, dynamic>),
     count: json['count'] as int,
-    rows: _dataFromJson(json['rows'] as List),
+    rows: json['rows'] as List,
   );
 }
 
 PreparedFetchResult<T> _$PreparedFetchResultFromJson<T>(
-  Map<String, dynamic> json,
-  T Function(Object json) fromJsonT,
-) {
+    Map<String, dynamic> json) {
   return PreparedFetchResult<T>(
-    records: _dataFromJson(json['records'] as List),
+    records: json['records'] as List,
     count: json['count'] as int,
   );
 }

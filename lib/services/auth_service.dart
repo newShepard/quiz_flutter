@@ -92,7 +92,7 @@ class AuthService {
           ),
         )
         .then((value) {
-      var val = value.records?[0];
+      var val = value.records[0];
       return MdtApiPrincipal.fromJson(val);
     });
   }
