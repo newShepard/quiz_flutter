@@ -2,13 +2,10 @@ import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_cookie_manager/dio_cookie_manager.dart';
 import 'package:quiz_flutter/api/mdt_api_url_helper.dart';
-import 'package:quiz_flutter/api/mdt_auth_client.dart';
-import 'package:quiz_flutter/api/mdt_password_client.dart';
 import 'dart:convert';
 import 'package:quiz_flutter/models/mdt_api/error_data.dart';
 import 'package:quiz_flutter/models/mdt_api/fetch.dart';
 import 'package:quiz_flutter/models/mdt_api/query.dart';
-import 'package:quiz_flutter/services/app_service.dart';
 import 'package:quiz_flutter/utils/constants.dart';
 
 typedef void OnRequestError(dynamic err, String url, dynamic data);

@@ -4,10 +4,8 @@ import 'package:quiz_flutter/api/mdt_auth_client.dart';
 import 'package:quiz_flutter/api/mdt_password_client.dart';
 import 'package:quiz_flutter/services/auth_service.dart';
 
-final getIt = GetIt.instance;
-
 Future initServices() async {
-  print('Hello');
+  final getIt = GetIt.instance;
   // api clients
   getIt.registerSingleton<MdtApiClient>(MdtApiClient());
   getIt.registerSingleton<MdtAuthClient>(MdtAuthClient());
@@ -16,8 +14,3 @@ Future initServices() async {
   // services
   getIt.registerSingleton<AuthService>(AuthService());
 }
-
-final mdtApiClient = getIt<MdtApiClient>();
-final mdtAuthClient = getIt<MdtAuthClient>();
-final mdtPasswordClient = getIt<MdtPasswordClient>();
-final authService = getIt<AuthService>();
