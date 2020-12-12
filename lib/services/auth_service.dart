@@ -2,7 +2,7 @@ import 'package:quiz_flutter/api/mdt_api_client.dart';
 import 'package:quiz_flutter/api/mdt_auth_client.dart';
 import 'package:quiz_flutter/api/mdt_filter_helper.dart';
 import 'package:quiz_flutter/api/mdt_password_client.dart';
-import 'package:quiz_flutter/helpers/dependecy_injector.dart' as di;
+import 'package:quiz_flutter/helpers/dependecy_injector.dart';
 import 'package:quiz_flutter/models/mdt_api/principal.dart';
 import 'package:quiz_flutter/models/mdt_api/query.dart';
 import 'package:quiz_flutter/models/quiz/user.dart';
@@ -21,9 +21,9 @@ class AuthService {
   //AuthServiceOptions? options;
   QuizUser? user;
   AuthService() {
-    this._mdtApiClient = di.mdtApiClient;
-    this._mdtAuthClient = di.mdtAuthClient;
-    this._mdtPasswordClient = di.mdtPasswordClient;
+    this._mdtApiClient = sl<MdtApiClient>();
+    this._mdtAuthClient = sl<MdtAuthClient>();
+    this._mdtPasswordClient = sl<MdtPasswordClient>();
     this.user = null;
   }
 

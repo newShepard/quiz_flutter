@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:quiz_flutter/api/mdt_api_client.dart';
-import 'package:quiz_flutter/helpers/dependecy_injector.dart' as di;
+import 'package:quiz_flutter/helpers/dependecy_injector.dart';
 import 'package:quiz_flutter/models/mdt_api/auth.dart';
 import 'package:quiz_flutter/models/mdt_api/password.dart';
 import 'package:quiz_flutter/models/mdt_api/user.dart';
@@ -13,7 +13,7 @@ class MdtPasswordClient {
   late final MdtApiClient _mdtApiClient;
 
   MdtPasswordClient() {
-    this._mdtApiClient = di.mdtApiClient;
+    this._mdtApiClient = sl<MdtApiClient>();
   }
 
   String _getPasswordUrl() {

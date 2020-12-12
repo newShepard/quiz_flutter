@@ -1,14 +1,14 @@
 import 'dart:core';
 import 'package:dio/dio.dart';
 import 'package:quiz_flutter/api/mdt_api_client.dart';
-import 'package:quiz_flutter/helpers/dependecy_injector.dart' as di;
+import 'package:quiz_flutter/helpers/dependecy_injector.dart';
 import 'package:quiz_flutter/models/mdt_api/user.dart';
 
 class MdtAuthClient {
   late final MdtApiClient _mdtApiClient;
 
   MdtAuthClient() {
-    this._mdtApiClient = di.mdtApiClient;
+    this._mdtApiClient = sl<MdtApiClient>();
   }
 
   Future<Response> _request(String url_path,

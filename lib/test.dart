@@ -1,15 +1,17 @@
 // @dart=2.9
 
-import 'package:quiz_flutter/helpers/app_initializer.dart' as initializer;
-import 'package:quiz_flutter/helpers/dependecy_injector.dart' as di;
+import 'package:quiz_flutter/api/mdt_auth_client.dart';
+import 'package:quiz_flutter/api/mdt_password_client.dart';
+import 'package:quiz_flutter/helpers/dependecy_injector.dart';
 import 'package:quiz_flutter/models/quiz/user.dart';
+import 'package:quiz_flutter/services/auth_service.dart';
 
 void main() async {
-  await initializer.initServices();
+  await injectDependencies();
 
-  var authClient = di.mdtAuthClient;
-  var passwordClient = di.mdtPasswordClient;
-  var authService = di.authService;
+  var authClient = sl<MdtAuthClient>();
+  var passwordClient = sl<MdtPasswordClient>();
+  var authService = sl<AuthService>();
 
   var authResponse = await authClient.signIn(
       login: "svoinkov", password: "rB12rb", rememberMe: true);

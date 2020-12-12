@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:quiz_flutter/api/mdt_api_client.dart';
-import 'package:quiz_flutter/helpers/dependecy_injector.dart' as di;
+import 'package:quiz_flutter/helpers/dependecy_injector.dart';
 import 'package:quiz_flutter/widgets/input_field.dart';
 import 'package:quiz_flutter/widgets/buttons_divided_group.dart';
 
@@ -12,7 +12,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  MdtApiClient _apiClient = di.mdtApiClient;
+  MdtApiClient _apiClient = sl<MdtApiClient>();
   String email = "";
   String password = "";
   Object? error;
