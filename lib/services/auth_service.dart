@@ -21,7 +21,7 @@ class AuthService {
   }
 
   Future<void> init() async {
-    var mdtUser = await this.mdtApiClient.auth.user();
+    var mdtUser = await this.mdtApiClient.auth.getMdtUser();
     // QuizUser? userData = QuizUser.create(mdtUser, MdtApiPrincipal());
     // if (this.isUserLoggedIn(userData)) {
     //   //userData = await getPrincipal(mdtUser.id);
@@ -73,7 +73,7 @@ class AuthService {
 
   Future<void> registerUser() async {}
 
-  Future<MdtApiPrincipal> getPrincipal(int? userId) async {
+  Future<MdtApiPrincipal> getMdtPrincipal(int? userId) async {
     return await this
         .mdtApiClient
         .fetch(

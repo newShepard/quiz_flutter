@@ -9,10 +9,10 @@ import 'package:quiz_flutter/utils/utils.dart';
 
 final String passwordUrl = '/password/:key';
 
-class MdtPasswordModule {
+class MdtPasswordClient {
   final MdtApiClient _mdtApiClient;
 
-  MdtPasswordModule(this._mdtApiClient);
+  MdtPasswordClient(this._mdtApiClient);
 
   String _getPasswordUrl() {
     return this._mdtApiClient.appUrl + '/#!' + passwordUrl;

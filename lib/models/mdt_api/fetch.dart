@@ -30,7 +30,6 @@ class FetchResult<T> {
   bool? custom;
   FetchDebug? debug;
   int? count;
-  //@JsonKey(fromJson: _dataFromJson)
   List<dynamic> rows;
 
   FetchResult({this.custom, this.debug, this.count, required this.rows});
@@ -41,7 +40,6 @@ class FetchResult<T> {
 
 @JsonSerializable(createToJson: false)
 class PreparedFetchResult<T> {
-  //@JsonKey(fromJson: _dataFromJson)
   List<dynamic> records;
   int count;
 
@@ -50,5 +48,3 @@ class PreparedFetchResult<T> {
   factory PreparedFetchResult.fromJson(Map<String, dynamic> json) =>
       _$PreparedFetchResultFromJson(json);
 }
-
-//T _dataFromJson<T>(List<dynamic> json) => json as T;

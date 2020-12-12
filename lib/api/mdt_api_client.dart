@@ -8,7 +8,6 @@ import 'dart:convert';
 import 'package:quiz_flutter/models/mdt_api/error_data.dart';
 import 'package:quiz_flutter/models/mdt_api/fetch.dart';
 import 'package:quiz_flutter/models/mdt_api/query.dart';
-import 'package:quiz_flutter/models/quiz/user.dart';
 
 typedef void OnRequestError(dynamic err, String url, dynamic data);
 final Map<String, String> requestHeaders = {"Content-Type": "application/json"};
@@ -31,16 +30,16 @@ class MdtRequestOptions {
 class MdtApiClient {
   late String apiUrl;
   late String appUrl;
-  late MdtAuthModule auth;
-  late MdtPasswordModule password;
+  late MdtAuthClient auth;
+  late MdtPasswordClient password;
   late Dio _dio;
 
   MdtApiClient(String apiUrl, String appUrl,
       {MDTApiServiceOptions? serviceOptions}) {
     this.apiUrl = apiUrl.replaceAll(new RegExp("\/\$"), "");
     this.appUrl = appUrl;
-    this.auth = new MdtAuthModule(this);
-    this.password = new MdtPasswordModule(this);
+    this.auth = new MdtAuthClient(this);
+    this.password = new MdtPasswordClient(this);
     this._dio = new Dio();
     final cookieJar = new CookieJar();
     this._dio.interceptors.add(CookieManager(cookieJar));
@@ -85,7 +84,6 @@ class MdtApiClient {
         .request(url, data: data, settings: settings, options: options)
         .then((value) {
       var t = value.data?[0];
-      //var fr = FetchResult.fromJson(t);
       return preparedFetchResult<T>(t);
     });
   }
@@ -102,8 +100,6 @@ class MdtApiClient {
     var m = {"count": json['count'], "records": json['rows']};
 
     return PreparedFetchResult<T>.fromJson(m);
-
-    //var preparedFetchResult = PreparedFetchResult.fromJson(json);
   }
 
   static Response handleMdtApiError(Response response) {

@@ -3,9 +3,9 @@ import 'package:dio/dio.dart';
 import 'package:quiz_flutter/api/mdt_api_client.dart';
 import 'package:quiz_flutter/models/mdt_api/user.dart';
 
-class MdtAuthModule {
+class MdtAuthClient {
   final MdtApiClient _mdtApiClient;
-  MdtAuthModule(this._mdtApiClient);
+  MdtAuthClient(this._mdtApiClient);
 
   Future<Response> _request(String url_path,
       {Map<String, dynamic>? data,
@@ -33,7 +33,7 @@ class MdtAuthModule {
     return this._request("security/impersonate", data: {"id": id});
   }
 
-  Future<MdtApiUser> user() {
+  Future<MdtApiUser> getMdtUser() {
     return this
         ._request("mdt/user")
         .then((value) => MdtApiUser.fromJson(value.data));
