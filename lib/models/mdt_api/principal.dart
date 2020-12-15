@@ -21,10 +21,10 @@ abstract class AbstractMdtApiPrincipal {
   bool flagRouteExsits;
   bool flagSuperVisor;
 
-  @JsonKey(name: "id_Employee\$")
+  @JsonKey(name: "id_Employee\$", nullable: true)
   Employee employee;
 
-  @JsonKey(name: "id_UserSettings\$")
+  @JsonKey(name: "id_UserSettings\$", nullable: true)
   UserSettings userSettings;
 }
 

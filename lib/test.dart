@@ -16,12 +16,6 @@ void main() async {
   var passwordClient = sl<MdtPasswordClient>();
   var authService = sl<AuthService>();
 
-  var authResponse = await authClient.signIn(
-      login: "svoinkov", password: "rB12rb", rememberMe: true);
-  var mdtUser = await authClient.getMdtUser();
-
-  var mdtPrincipal = await authService.getMdtPrincipal(mdtUser.id);
-  var quizUser = QuizUser.create(mdtUser, mdtPrincipal);
-
-  print(quizUser.email);
+  var user = await authService.initUser();
+  print(user.isAnonymous);
 }

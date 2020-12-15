@@ -5,9 +5,11 @@ import 'package:quiz_flutter/api/mdt_password_client.dart';
 import 'package:quiz_flutter/helpers/dependecy_injector.dart';
 import 'package:quiz_flutter/models/mdt_api/principal.dart';
 import 'package:quiz_flutter/models/mdt_api/query.dart';
+import 'package:quiz_flutter/models/mdt_api/user.dart';
 import 'package:quiz_flutter/models/quiz/user.dart';
 import 'package:meta/meta.dart';
 
+const QUIZ_GROUPS = ["Questionnaire", "QuestionnaireAdministrator"];
 typedef Future<void> AuthServuceInitCb(QuizUser user);
 
 class AuthServiceOptions {
@@ -28,12 +30,13 @@ class AuthService {
     this.user = null;
   }
 
-  Future<void> init() async {
+  Future<QuizUser> initUser() async {
     var mdtUser = await this._mdtAuthClient.getMdtUser();
-    // QuizUser userData = QuizUser.create(mdtUser, MdtApiPrincipal());
-    // if (this.isUserLoggedIn(userData)) {
-    //   //userData = await getPrincipal(mdtUser.id);
-    // }
+    MdtApiPrincipal mdtPrincipal;
+    if (this.isUserLoggedIn(mdtUser)) {
+      mdtPrincipal = await this.getMdtPrincipal(mdtUser.id);
+    }
+    return QuizUser.create(mdtUser, mdtPrincipal);
   }
 
   Future<void> signIn(
@@ -41,12 +44,12 @@ class AuthService {
     await this
         ._mdtAuthClient
         .signIn(login: login, password: password, rememberMe: true);
-    await this.init();
+    await this.initUser();
   }
 
   Future<void> signOut() async {
     await this._mdtAuthClient.signOut();
-    await this.init();
+    await this.initUser();
   }
 
   Future<void> forgotPassword({@required String login}) async {
@@ -56,10 +59,6 @@ class AuthService {
   Future<void> setPassword() async {}
 
   Future<void> changePassword() async {}
-
-  bool isLoggedIn() {
-    return this.isUserLoggedIn(this.user);
-  }
 
   bool isSupervisor() {
     return this.user.flagSuperVisor;
@@ -71,7 +70,7 @@ class AuthService {
     return true;
   }
 
-  bool isUserLoggedIn(QuizUser user) {
+  bool isUserLoggedIn(MdtApiUser user) {
     return user.isAnonymous == false;
   }
 
