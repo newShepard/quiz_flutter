@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:meta/meta.dart';
 
 part 'password.g.dart';
 
@@ -7,7 +8,7 @@ class ChangePasswordData {
   final String oldPassword;
   final String newPassword;
 
-  ChangePasswordData({required this.oldPassword, required this.newPassword});
+  ChangePasswordData({@required this.oldPassword, @required this.newPassword});
 
   Map<String, dynamic> toJson() => _$ChangePasswordDataToJson(this);
 }
@@ -19,9 +20,9 @@ class SetPasswordData {
   final String key;
 
   SetPasswordData(
-      {required this.password,
-      required this.confirmPassword,
-      required this.key});
+      {@required this.password,
+      @required this.confirmPassword,
+      @required this.key});
 
   Map<String, dynamic> toJson() => _$SetPasswordDataToJson(this);
 }

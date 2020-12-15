@@ -1,5 +1,3 @@
-// @dart=2.9
-
 // import 'package:connectivity/connectivity.dart';
 // import 'package:flutter/widgets.dart';
 // import 'package:flutter/cupertino.dart';

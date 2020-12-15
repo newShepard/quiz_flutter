@@ -1,8 +1,8 @@
 import 'package:quiz_flutter/models/mdt_api/error_data.dart';
 
 abstract class QuizError extends Error {
-  late String name;
-  String? message;
+  String name;
+  String message;
 
   @override
   String toString() {
@@ -13,8 +13,8 @@ abstract class QuizError extends Error {
 }
 
 class MdtApiError extends QuizError {
-  String? code;
-  dynamic? args;
+  String code;
+  dynamic args;
 
   MdtApiError(MdtApiErrorData data) {
     this.name = 'MDT API Error';

@@ -1,13 +1,14 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:meta/meta.dart';
 
 part 'user.g.dart';
 
 @JsonSerializable()
 class MdtApiUserSettings {
-  String? table = 'qst.UserSettings';
-  num? $id;
-  bool? flagAcceptPrivacyPolicy;
-  num? id_mdt_Principal;
+  String table = 'qst.UserSettings';
+  num $id;
+  bool flagAcceptPrivacyPolicy;
+  num id_mdt_Principal;
   MdtApiUserSettings(
       {this.$id, this.flagAcceptPrivacyPolicy, this.id_mdt_Principal});
 
@@ -16,15 +17,15 @@ class MdtApiUserSettings {
 }
 
 abstract class AbstractMdtApiUser {
-  int? id;
-  String? fullName;
-  String? email;
-  String? identityName;
-  bool? isAdmin;
-  bool? isAnonymous;
-  List<String>? roles;
-  int? languageId;
-  bool? isImpersonated;
+  int id;
+  String fullName;
+  String email;
+  String identityName;
+  bool isAdmin;
+  bool isAnonymous;
+  List<String> roles;
+  int languageId;
+  bool isImpersonated;
 }
 
 @JsonSerializable()
@@ -39,9 +40,9 @@ class MdtApiUser with AbstractMdtApiUser {
 class UserRegistrationData {
   final String code;
   final String email;
-  String? title;
+  String title;
 
-  UserRegistrationData({required this.code, required this.email, this.title});
+  UserRegistrationData({@required this.code, @required this.email, this.title});
 
   Map<String, dynamic> toJson() => _$UserRegistrationDataToJson(this);
 }

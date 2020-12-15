@@ -5,7 +5,7 @@ part 'employee.g.dart';
 
 @JsonSerializable()
 class Employee with Recordable, Nameable {
-  String? code;
+  String code;
   Employee();
 
   factory Employee.fromJson(Map<String, dynamic> json) =>

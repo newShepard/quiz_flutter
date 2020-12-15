@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:quiz_flutter/models/mdt_api/filter.dart';
 import 'package:quiz_flutter/models/mdt_api/query.dart';
+import 'package:meta/meta.dart';
 
 const Map<String, String> negationFilterAliases = {
   'notStartsWith': 'startsWith',
@@ -40,7 +41,7 @@ class ApiUrlHelper {
     return request;
   }
 
-  static String? filterToString(Filter? filter, String? table) {
+  static String filterToString(Filter filter, String table) {
     if (filter == null) return null;
 
     if (filter.groups?.isNotEmpty ?? false) {
@@ -97,17 +98,17 @@ class ApiUrlHelper {
     }
   }
 
-  static String? sortToString(List<QuerySorting?>? sorting) {
+  static String sortToString(List<QuerySorting> sorting) {
     return '';
   }
 
-  static String? argToString({dynamic? arg, bool? isFirst, String? op}) {
+  static String argToString({dynamic arg, bool isFirst, String op}) {
     return (isFirst ?? false)
         ? arg
         : ApiUrlHelper._valueToString(arg: arg, op: op);
   }
 
-  static String? _valueToString({dynamic? arg, String? op}) {
+  static String _valueToString({dynamic arg, String op}) {
     // if (arg != null && arg['table'] != null) {
     //   var tres = arg['table'] + ':' + arg['field'];
     //   if (arg['filter'] != null && arg['args'] != null) {
@@ -128,14 +129,14 @@ class ApiUrlHelper {
     //   return tres;
     // }
 
-    var res = (arg is String?) && (arg)?.split('').first == '#' && op == 'in'
+    var res = (arg is String) && (arg).split('').first == '#' && op == 'in'
         ? arg
         : jsonEncode(arg);
 
     return res == null ? 'null' : res;
   }
 
-  static String? prepareOp(String op) {
+  static String prepareOp(String op) {
     var tbl = {'queryIn': 'in'};
 
     return tbl[op] ?? op;

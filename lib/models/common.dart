@@ -1,11 +1,11 @@
 mixin Recordable {
-  int? id;
+  int id;
 }
 
 mixin Sortable {
-  int? sortOtder;
+  int sortOtder;
 }
 
 mixin Nameable {
-  String? name;
+  String name;
 }

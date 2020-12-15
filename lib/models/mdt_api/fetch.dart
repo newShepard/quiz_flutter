@@ -1,23 +1,24 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:meta/meta.dart';
 
 part 'fetch.g.dart';
 
 @JsonSerializable(createToJson: false)
 class Group {
   int count;
-  dynamic? object;
-  List<Group?>? group;
-  String? value;
+  dynamic object;
+  List<Group> group;
+  String value;
 
-  Group({required this.count, this.object, this.group, this.value});
+  Group({@required this.count, this.object, this.group, this.value});
 
   factory Group.fromJson(Map<String, dynamic> json) => _$GroupFromJson(json);
 }
 
 @JsonSerializable(createToJson: false)
 class FetchDebug {
-  String? sql;
-  double? time;
+  String sql;
+  double time;
 
   FetchDebug({this.sql, this.time});
 
@@ -27,12 +28,12 @@ class FetchDebug {
 
 @JsonSerializable(createToJson: false)
 class FetchResult<T> {
-  bool? custom;
-  FetchDebug? debug;
-  int? count;
+  bool custom;
+  FetchDebug debug;
+  int count;
   List<dynamic> rows;
 
-  FetchResult({this.custom, this.debug, this.count, required this.rows});
+  FetchResult({this.custom, this.debug, this.count, @required this.rows});
 
   factory FetchResult.fromJson(Map<String, dynamic> json) =>
       _$FetchResultFromJson(json);
@@ -43,7 +44,7 @@ class PreparedFetchResult<T> {
   List<dynamic> records;
   int count;
 
-  PreparedFetchResult({required this.records, required this.count});
+  PreparedFetchResult({@required this.records, @required this.count});
 
   factory PreparedFetchResult.fromJson(Map<String, dynamic> json) =>
       _$PreparedFetchResultFromJson(json);

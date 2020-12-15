@@ -6,8 +6,8 @@ part 'principal.g.dart';
 
 @JsonSerializable()
 class UserSettings with Recordable {
-  bool? flagAcceptPrivacyPolicy;
-  int? id_mdt_Principal;
+  bool flagAcceptPrivacyPolicy;
+  int id_mdt_Principal;
 
   UserSettings();
 
@@ -16,16 +16,16 @@ class UserSettings with Recordable {
 }
 
 abstract class AbstractMdtApiPrincipal {
-  bool? flagAdmin;
-  bool? flagGetlog;
-  bool? flagRouteExsits;
-  bool? flagSuperVisor;
+  bool flagAdmin;
+  bool flagGetlog;
+  bool flagRouteExsits;
+  bool flagSuperVisor;
 
   @JsonKey(name: "id_Employee\$")
-  Employee? employee;
+  Employee employee;
 
   @JsonKey(name: "id_UserSettings\$")
-  UserSettings? userSettings;
+  UserSettings userSettings;
 }
 
 @JsonSerializable()

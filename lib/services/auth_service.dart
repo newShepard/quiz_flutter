@@ -6,20 +6,21 @@ import 'package:quiz_flutter/helpers/dependecy_injector.dart';
 import 'package:quiz_flutter/models/mdt_api/principal.dart';
 import 'package:quiz_flutter/models/mdt_api/query.dart';
 import 'package:quiz_flutter/models/quiz/user.dart';
+import 'package:meta/meta.dart';
 
-typedef Future<void>? AuthServuceInitCb(QuizUser user);
+typedef Future<void> AuthServuceInitCb(QuizUser user);
 
 class AuthServiceOptions {
-  AuthServuceInitCb? init;
+  AuthServuceInitCb init;
   AuthServiceOptions({this.init});
 }
 
 class AuthService {
-  late final MdtApiClient _mdtApiClient;
-  late final MdtAuthClient _mdtAuthClient;
-  late final MdtPasswordClient _mdtPasswordClient;
-  //AuthServiceOptions? options;
-  QuizUser? user;
+  MdtApiClient _mdtApiClient;
+  MdtAuthClient _mdtAuthClient;
+  MdtPasswordClient _mdtPasswordClient;
+
+  QuizUser user;
   AuthService() {
     this._mdtApiClient = sl<MdtApiClient>();
     this._mdtAuthClient = sl<MdtAuthClient>();
@@ -29,13 +30,14 @@ class AuthService {
 
   Future<void> init() async {
     var mdtUser = await this._mdtAuthClient.getMdtUser();
-    // QuizUser? userData = QuizUser.create(mdtUser, MdtApiPrincipal());
+    // QuizUser userData = QuizUser.create(mdtUser, MdtApiPrincipal());
     // if (this.isUserLoggedIn(userData)) {
     //   //userData = await getPrincipal(mdtUser.id);
     // }
   }
 
-  Future<void> signIn({required String login, required String password}) async {
+  Future<void> signIn(
+      {@required String login, @required String password}) async {
     await this
         ._mdtAuthClient
         .signIn(login: login, password: password, rememberMe: true);
@@ -47,7 +49,7 @@ class AuthService {
     await this.init();
   }
 
-  Future<void> forgotPassword({required String login}) async {
+  Future<void> forgotPassword({@required String login}) async {
     await this._mdtPasswordClient.sendForgotPassword(login: login);
   }
 
@@ -55,22 +57,22 @@ class AuthService {
 
   Future<void> changePassword() async {}
 
-  bool? isLoggedIn() {
+  bool isLoggedIn() {
     return this.isUserLoggedIn(this.user);
   }
 
-  bool? isSupervisor() {
-    return this.user?.flagSuperVisor;
+  bool isSupervisor() {
+    return this.user.flagSuperVisor;
   }
 
-  bool? hasAccessToQuiz() {
+  bool hasAccessToQuiz() {
     var user = this.user;
-    //return user?.roles.any((element) => false)
+    //return user.roles.any((element) => false)
     return true;
   }
 
-  bool? isUserLoggedIn(QuizUser? user) {
-    return user?.isAnonymous == false;
+  bool isUserLoggedIn(QuizUser user) {
+    return user.isAnonymous == false;
   }
 
   Future<void> getLoginData() async {
@@ -79,7 +81,7 @@ class AuthService {
 
   Future<void> registerUser() async {}
 
-  Future<MdtApiPrincipal> getMdtPrincipal(int? userId) async {
+  Future<MdtApiPrincipal> getMdtPrincipal(int userId) async {
     return await this
         ._mdtApiClient
         .fetch(

@@ -12,10 +12,11 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  String foo = '';
   MdtApiClient _apiClient = sl<MdtApiClient>();
   String email = "";
   String password = "";
-  Object? error;
+  Object error;
   bool ready = false;
 
   void _onEmailChange(String v) {
@@ -112,7 +113,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                         ._apiClient
                                         .request("security/signin", data: {
                                       "login": "svoinkov",
-                                      "password": "Rb12rb",
+                                      "password": "rB12rb",
                                       "rememberMe": true
                                     });
                                     print(r.statusCode);

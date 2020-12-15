@@ -8,6 +8,7 @@ import 'package:quiz_flutter/models/mdt_api/error_data.dart';
 import 'package:quiz_flutter/models/mdt_api/fetch.dart';
 import 'package:quiz_flutter/models/mdt_api/query.dart';
 import 'package:quiz_flutter/utils/constants.dart';
+import 'package:meta/meta.dart';
 
 typedef void OnRequestError(dynamic err, String url, dynamic data);
 final Map<String, String> requestHeaders = {"Content-Type": "application/json"};
@@ -24,13 +25,13 @@ class MdtRequestSettings {
 
 class MdtRequestOptions {
   final CancelToken cancelToken;
-  MdtRequestOptions({required this.cancelToken});
+  MdtRequestOptions({@required this.cancelToken});
 }
 
 class MdtApiClient {
-  late String apiUrl;
-  late String appUrl;
-  late Dio _dio;
+  String apiUrl;
+  String appUrl;
+  Dio _dio;
 
   MdtApiClient() {
     this.apiUrl = Consts.api_url.replaceAll(new RegExp("\/\$"), "");
@@ -42,8 +43,8 @@ class MdtApiClient {
 
   Future<Response> request(String url,
       {dynamic data,
-      MdtRequestSettings? settings,
-      MdtRequestOptions? options}) async {
+      MdtRequestSettings settings,
+      MdtRequestOptions options}) async {
     dynamic body = null;
 
     if (settings != null && settings.camel) url += "?camel=true";
@@ -67,10 +68,10 @@ class MdtApiClient {
   }
 
   Future<PreparedFetchResult<T>> fetch<T>(
-      {required Query query,
-      String? table,
-      MdtRequestSettings? settings = const MdtRequestSettings(camel: true),
-      MdtRequestOptions? options}) {
+      {@required Query query,
+      String table,
+      MdtRequestSettings settings = const MdtRequestSettings(camel: true),
+      MdtRequestOptions options}) {
     var t = table ?? query.table;
     var url = 'fetch' + (t != null ? '/' + t : '');
     var data = ApiUrlHelper.query2Str(query);
@@ -78,7 +79,7 @@ class MdtApiClient {
     return this
         .request(url, data: data, settings: settings, options: options)
         .then((value) {
-      var t = value.data?[0];
+      var t = value.data[0];
       return preparedFetchResult<T>(t);
     });
   }
