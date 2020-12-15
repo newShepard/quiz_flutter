@@ -4,7 +4,7 @@ import '../common.dart';
 
 part 'principal.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 class UserSettings with Recordable {
   bool flagAcceptPrivacyPolicy;
   int id_mdt_Principal;
@@ -28,7 +28,7 @@ abstract class AbstractMdtApiPrincipal {
   UserSettings userSettings;
 }
 
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 class MdtApiPrincipal with AbstractMdtApiPrincipal {
   MdtApiPrincipal();
 
