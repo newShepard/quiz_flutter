@@ -47,8 +47,8 @@ class ApiUrlHelper {
     if (filter.groups?.isNotEmpty ?? false) {
       var result = filter.groups
           ?.map((e) => ApiUrlHelper.filterToString(e, table))
-          .where((element) => element?.isNotEmpty == true)
-          .join(' ' + filter.op + ' ');
+          ?.where((element) => element?.isNotEmpty == true)
+          ?.join(' ' + filter.op + ' ');
 
       return result != null
           ? (filter.not == true ? 'not' : '') + '(' + result + ')'
