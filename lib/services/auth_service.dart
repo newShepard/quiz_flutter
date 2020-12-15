@@ -36,6 +36,7 @@ class AuthService {
     if (this.isUserLoggedIn(mdtUser)) {
       mdtPrincipal = await this.getMdtPrincipal(mdtUser.id);
     }
+    //await userService.updateUserSettings
     return QuizUser.create(mdtUser, mdtPrincipal);
   }
 
@@ -66,7 +67,6 @@ class AuthService {
 
   bool hasAccessToQuiz() {
     var user = this.user;
-    //return user.roles.any((element) => false)
     return true;
   }
 
