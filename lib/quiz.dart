@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quiz_flutter/screens/login_screen.dart';
+import 'package:quiz_flutter/pages/login_page.dart';
 
 class QuizApp extends StatefulWidget {
   @override
@@ -17,7 +17,7 @@ class _QuizAppState extends State<QuizApp> {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       routes: {
-        '/': (BuildContext context) => LoginScreen(),
+        '/': (BuildContext context) => LoginPage(),
       },
     );
   }

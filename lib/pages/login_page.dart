@@ -6,12 +6,12 @@ import 'package:quiz_flutter/helpers/dependecy_injector.dart';
 import 'package:quiz_flutter/widgets/input_field.dart';
 import 'package:quiz_flutter/widgets/buttons_divided_group.dart';
 
-class LoginScreen extends StatefulWidget {
+class LoginPage extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => _LoginScreenState();
+  State<StatefulWidget> createState() => _LoginPageState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _LoginPageState extends State<LoginPage> {
   String foo = '';
   MdtApiClient _apiClient = sl<MdtApiClient>();
   String email = "";
