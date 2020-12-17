@@ -1,54 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:quiz_flutter/api/mdt_api_client.dart';
-import 'package:quiz_flutter/helpers/dependecy_injector.dart';
+import 'package:quiz_flutter/controllers/login_page_controller.dart';
+import 'package:quiz_flutter/pages/forgot_password_page.dart';
+import 'package:quiz_flutter/pages/registration_page.dart';
 import 'package:quiz_flutter/widgets/input_field.dart';
 import 'package:quiz_flutter/widgets/buttons_divided_group.dart';
+import 'package:quiz_flutter/widgets/input_tile.dart';
 
-class LoginPage extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() => _LoginPageState();
-}
-
-class _LoginPageState extends State<LoginPage> {
-  String foo = '';
-  MdtApiClient _apiClient = sl<MdtApiClient>();
-  String email = "";
-  String password = "";
-  Object error;
-  bool ready = false;
-
-  void _onEmailChange(String v) {
-    setState(() {
-      email = v;
-    });
-  }
-
-  void _onPasswordChange(String v) {
-    setState(() {
-      password = v;
-    });
-  }
-
-  bool _signInIsEnabled() {
-    return this.email != null && this.password != null;
-  }
-
+class LoginPage extends GetView<LoginPageController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(48),
-        child: AppBar(
-          elevation: 10,
-          centerTitle: true,
-          backgroundColor: Colors.white,
-          title: Text(
-            'Авторизация',
-            style: TextStyle(color: Colors.black),
-          ),
-        ),
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text('Авторизация'),
       ),
       body: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
@@ -79,7 +46,22 @@ class _LoginPageState extends State<LoginPage> {
                         child: Flexible(
                           flex: 1,
                           child: DividedGroup(
-                            children: [InputField(), InputField()],
+                            children: [
+                              InputTile(
+                                hintText: "Введите e-mail",
+                                controller: controller.email.value,
+                                onClear: () {
+                                  controller.clearEmail();
+                                },
+                              ),
+                              InputTile(
+                                hintText: "Введите пароль",
+                                controller: controller.password.value,
+                                onClear: () {
+                                  controller.clearPassword();
+                                },
+                              ),
+                            ],
                           ),
                         ),
                       ),
@@ -109,14 +91,8 @@ class _LoginPageState extends State<LoginPage> {
                                     color: Colors.white,
                                   ),
                                   onPressed: () async {
-                                    var r = await this
-                                        ._apiClient
-                                        .request("security/signin", data: {
-                                      "login": "svoinkov",
-                                      "password": "rB12rb",
-                                      "rememberMe": true
-                                    });
-                                    print(r.statusCode);
+                                    await controller.onSignIn();
+                                    print(Get.routing.args);
                                   },
                                 ),
                               ),
@@ -136,7 +112,26 @@ class _LoginPageState extends State<LoginPage> {
                                       color: HexColor("#345B6C"),
                                     ),
                                   ),
-                                  onPressed: () => print("Hello"),
+                                  onPressed: () => Get.to(ForgotPasswordPage()),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              child: ButtonTheme(
+                                height: 40,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(4),
+                                  ),
+                                ),
+                                child: FlatButton(
+                                  child: Text(
+                                    "Регистрация",
+                                    style: TextStyle(
+                                      color: HexColor("#345B6C"),
+                                    ),
+                                  ),
+                                  onPressed: () => Get.to(RegistrationPage()),
                                 ),
                               ),
                             ),
