@@ -60,11 +60,12 @@ class MdtApiClient {
           data: body,
           cancelToken: options?.cancelToken ?? null,
         )
-        .then(MdtApiClient.handleMdtApiError)
-        .catchError((err) {
-      print('ERROR!!!: ${err}');
-      throw err;
-    });
+        .then(this.handleMdtApiError)
+        .catchError(
+      (err) {
+        this.onRequestError(err, url, data);
+      },
+    );
   }
 
   Future<PreparedFetchResult<T>> fetch<T>(
@@ -97,16 +98,42 @@ class MdtApiClient {
     return PreparedFetchResult<T>.fromJson(m);
   }
 
-  static Response handleMdtApiError(Response response) {
+  Response handleMdtApiError(Response response) {
     if (response.statusCode > 400) {
       var json = response.data;
-      if (MdtApiClient.isApiError(json))
-        throw new MdtApiError(MdtApiErrorData.fromJson(json));
+      if (this.isApiError(json)) {
+        throw MdtApiError(MdtApiErrorData.fromJson(json));
+      }
     }
     return response;
   }
 
-  static bool isApiError(dynamic data) {
-    return data["Message"] != null;
+  bool isApiError(dynamic data) {
+    var condition = false;
+    try {
+      condition = data["Message"] != null;
+    } catch (err) {
+      return false;
+    }
+    return condition;
+  }
+
+  void onRequestError(dynamic error, String url, dynamic data) {
+    var errData = (error is DioError) ? error.response.data : error;
+
+    if (this.isApiError(errData) == true) {
+      var err = MdtApiError(MdtApiErrorData.fromJson(errData));
+      switch (err.code) {
+        case "SecurityTableAccess":
+          {
+            var args = err?.args;
+            if (args != null && args['User'] == "Anonymous") print("ANONYMOUS");
+            break;
+          }
+        default:
+          throw err;
+      }
+      throw err;
+    }
   }
 }
