@@ -31,7 +31,7 @@ class LoginPage extends GetView<LoginPageController> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Expanded(
-                    flex: 1,
+                    flex: 2,
                     child: SvgPicture.asset('assets/quiz_logo.svg'),
                   ),
                   Expanded(
