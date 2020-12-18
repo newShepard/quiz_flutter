@@ -42,11 +42,11 @@ class HomePageController extends GetxController {
         this._authService.hasAccessToQuiz()) {
       this.userCanLogin.value = true;
       print('true');
-      Get.off(ForgotPasswordPage());
+      Get.offNamed('/forgot-password');
     } else {
       this.userCanLogin.value = false;
       print('false');
-      Get.off(LoginPage());
+      Get.offNamed('/login');
     }
   }
 }
