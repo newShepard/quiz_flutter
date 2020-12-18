@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:get/get.dart';
 import 'package:quiz_flutter/controllers/home_page_controller.dart';
+import 'package:quiz_flutter/pages/login_page.dart';
 
 class HomePage extends GetView<HomePageController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: CircularProgressIndicator(),
+      body: FutureBuilder(
+        future: controller.initUser(),
+        builder: (_, __) => Center(
+          child: CircularProgressIndicator(),
+        ),
       ),
     );
   }

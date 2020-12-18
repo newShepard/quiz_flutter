@@ -11,6 +11,9 @@ import 'package:quiz_flutter/widgets/input_tile.dart';
 
 class LoginPage extends GetView<LoginPageController> {
   @override
+  // TODO: implement controller
+  LoginPageController get controller => super.controller;
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -31,7 +34,7 @@ class LoginPage extends GetView<LoginPageController> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Expanded(
-                    flex: 2,
+                    flex: 1,
                     child: SvgPicture.asset('assets/quiz_logo.svg'),
                   ),
                   Expanded(
@@ -78,7 +81,6 @@ class LoginPage extends GetView<LoginPageController> {
                               ),
                               onPressed: () async {
                                 await controller.onSignIn();
-                                print(Get.routing.args);
                               },
                             ),
                           ),

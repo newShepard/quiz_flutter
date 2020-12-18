@@ -5,19 +5,7 @@ class LoginPageController extends GetxController {
   final email = TextEditingController().obs;
   final password = TextEditingController().obs;
   final ready = false.obs;
-  Rx<dynamic> error = null.obs;
-
-  @override
-  void onInit() {
-    print("INITED");
-    super.onInit();
-  }
-
-  @override
-  void onReady() {
-    // TODO: implement onReady
-    super.onReady();
-  }
+  final error = dynamic.obs;
 
   void changeEmail(String value) {
     this.email.value.text = value;
