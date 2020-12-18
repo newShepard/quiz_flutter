@@ -45,9 +45,7 @@ class LoginPage extends GetView<LoginPageController> {
                         ),
                         Padding(
                           padding: EdgeInsets.only(top: 20),
-                          child: Text(
-                            controller.error?.message ?? "",
-                          ),
+                          child: Obx(() => Text(controller.errorMessage.value)),
                         )
                       ],
                     ),

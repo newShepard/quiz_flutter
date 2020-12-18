@@ -4,16 +4,18 @@ import 'package:quiz_flutter/helpers/dependecy_injector.dart';
 import 'package:quiz_flutter/services/auth_service.dart';
 
 class LoginPageController extends GetxController {
-  final email = TextEditingController();
-  final password = TextEditingController();
-
-  dynamic error;
-
+  TextEditingController email;
+  TextEditingController password;
   AuthService _authService;
+
+  var errorMessage = RxString('');
 
   @override
   void onInit() {
+    this.email = TextEditingController();
+    this.password = TextEditingController();
     this._authService = sl<AuthService>();
+    ever(errorMessage, (_) => print('Ever: ${_}'));
     super.onInit();
   }
 
@@ -47,8 +49,26 @@ class LoginPageController extends GetxController {
             login: this.email.value.text, password: this.password.value.text)
         .then((value) => null)
         .catchError((error) {
-      this.error = error;
-      update();
+      this.errorMessage.value = error?.message ?? "";
     });
   }
 }
+
+// List<dynamic> getApiError(dynamic e) {
+//   var erz = (e['reason'] ?? const {});
+
+//   var error = (e['message'] ?? e['reason'] ?? e);
+//   var data = e['reason']['data']?.err?.data ?? e?.data ?? e;
+
+//   if ((data?.Message ?? false) &&
+//       (data?.Code ?? false) &&
+//       (data?.Args ?? false)) {
+//     error = ['error:${data?.Code}', data?.Args];
+//   } else if ((data?.Message ?? false) &&
+//       (data?.Args ?? false) &&
+//       !(data?.Code ?? false)) {
+//     error = [data?.Message, data?.Args];
+//   }
+
+//   return error;
+// }
