@@ -21,13 +21,10 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
-    print("PAGE1");
     return GetMaterialApp(
       title: 'ICS Quiz',
       initialRoute: '/login',
-      initialBinding: LoginPageBinding(),
       theme: ThemeData(scaffoldBackgroundColor: HexColor("e8f0f3")),
-      defaultTransition: Transition.rightToLeftWithFade,
       debugShowCheckedModeBanner: false,
       getPages: [
         GetPage(

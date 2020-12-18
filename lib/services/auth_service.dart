@@ -67,7 +67,8 @@ class AuthService {
 
   bool hasAccessToQuiz() {
     var user = this.user;
-    return true;
+    return user?.roles?.any((role) => QUIZ_GROUPS.contains(role)) ??
+        user.isAdmin;
   }
 
   bool isUserLoggedIn(MdtApiUser user) {
