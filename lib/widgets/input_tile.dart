@@ -11,7 +11,6 @@ class InputTile extends StatelessWidget {
       @required this.onClear});
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Container(
       height: 56,
       padding: EdgeInsets.only(left: 20, right: 20),

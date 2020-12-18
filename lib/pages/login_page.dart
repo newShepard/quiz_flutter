@@ -3,16 +3,10 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:quiz_flutter/controllers/login_page_controller.dart';
-import 'package:quiz_flutter/pages/forgot_password_page.dart';
-import 'package:quiz_flutter/pages/registration_page.dart';
-import 'package:quiz_flutter/widgets/input_field.dart';
 import 'package:quiz_flutter/widgets/buttons_divided_group.dart';
 import 'package:quiz_flutter/widgets/input_tile.dart';
 
 class LoginPage extends GetView<LoginPageController> {
-  @override
-  // TODO: implement controller
-  LoginPageController get controller => super.controller;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,8 +16,6 @@ class LoginPage extends GetView<LoginPageController> {
       ),
       body: SafeArea(
         child: CustomScrollView(
-          //ClampingScrollPhysics
-          //RangeMaintainingScrollPhysics
           physics: BouncingScrollPhysics(),
           slivers: [
             SliverFillRemaining(
@@ -43,14 +35,20 @@ class LoginPage extends GetView<LoginPageController> {
                       children: [
                         InputTile(
                           hintText: "Введите e-mail",
-                          controller: controller.email.value,
+                          controller: controller.email,
                           onClear: controller.clearEmail,
                         ),
                         InputTile(
                           hintText: "Введите пароль",
-                          controller: controller.password.value,
+                          controller: controller.password,
                           onClear: controller.clearPassword,
                         ),
+                        Padding(
+                          padding: EdgeInsets.only(top: 20),
+                          child: Text(
+                            controller.error?.message ?? "",
+                          ),
+                        )
                       ],
                     ),
                   ),
@@ -80,7 +78,7 @@ class LoginPage extends GetView<LoginPageController> {
                                 color: Colors.white,
                               ),
                               onPressed: () async {
-                                await controller.onSignIn();
+                                await controller.singIn();
                               },
                             ),
                           ),
@@ -100,7 +98,7 @@ class LoginPage extends GetView<LoginPageController> {
                                   color: HexColor("#345B6C"),
                                 ),
                               ),
-                              onPressed: () => Get.to(ForgotPasswordPage()),
+                              onPressed: () => Get.toNamed('/forgot-password'),
                             ),
                           ),
                         ),
@@ -119,7 +117,7 @@ class LoginPage extends GetView<LoginPageController> {
                                   color: HexColor("#345B6C"),
                                 ),
                               ),
-                              onPressed: () => Get.to(RegistrationPage()),
+                              onPressed: () => Get.toNamed('/registration'),
                             ),
                           ),
                         ),

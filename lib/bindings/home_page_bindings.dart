@@ -8,8 +8,5 @@ class HomePageBindings extends Bindings {
     Get.lazyPut<HomePageController>(() {
       return HomePageController();
     });
-    Get.lazyPut<LoginPageController>(() {
-      return LoginPageController();
-    });
   }
 }
