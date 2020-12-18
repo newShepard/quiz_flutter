@@ -15,42 +15,30 @@ class LoginPageController extends GetxController {
     this.email = TextEditingController();
     this.password = TextEditingController();
     this._authService = sl<AuthService>();
-    ever(errorMessage, (_) => print('Ever: ${_}'));
     super.onInit();
   }
 
   @override
   void onClose() {
-    email.dispose();
-    password.dispose();
+    email?.dispose();
+    password?.dispose();
     super.onClose();
   }
 
-  void changeEmail(String value) {
-    this.email.text = value;
-  }
+  void changeEmail(String value) => email.text = value;
 
-  void clearEmail() {
-    this.email.text = "";
-  }
+  void clearEmail() => email.text = "";
 
-  void changePassword(String value) {
-    this.password.text = value;
-  }
+  void changePassword(String value) => password.text = value;
 
-  void clearPassword() {
-    this.password.text = "";
-  }
+  void clearPassword() => password.text = "";
 
   Future<void> singIn() async {
     await this
         ._authService
-        .signIn(
-            login: this.email.value.text, password: this.password.value.text)
-        .then((value) => null)
-        .catchError((error) {
-      this.errorMessage.value = error?.message ?? "";
-    });
+        .signIn(login: email.value.text, password: password.value.text)
+        .then((value) => errorMessage.value = "")
+        .catchError((error) => errorMessage.value = error?.message ?? "");
   }
 }
 
