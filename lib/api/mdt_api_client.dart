@@ -131,7 +131,7 @@ class MdtApiClient {
         default:
           throw err;
       }
-      throw err;
     }
+    throw errData;
   }
 }
