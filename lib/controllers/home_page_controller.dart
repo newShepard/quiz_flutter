@@ -41,11 +41,9 @@ class HomePageController extends GetxController {
     if (!(this.user?.value?.isAnonymous ?? false) &&
         this._authService.hasAccessToQuiz()) {
       this.userCanLogin.value = true;
-      print('true');
       Get.offNamed('/forgot-password');
     } else {
       this.userCanLogin.value = false;
-      print('false');
       Get.offNamed('/login');
     }
   }
