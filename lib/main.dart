@@ -8,6 +8,7 @@ import 'package:quiz_flutter/helpers/dependecy_injector.dart';
 import 'package:quiz_flutter/pages/forgot_password_page.dart';
 import 'package:quiz_flutter/pages/home_page.dart';
 import 'package:quiz_flutter/pages/login_page.dart';
+import 'package:quiz_flutter/pages/main.page.dart';
 import 'package:quiz_flutter/pages/registration_page.dart';
 
 void main() async {
@@ -42,7 +43,8 @@ class MyApp extends StatelessWidget {
           binding: LoginPageBinding(),
         ),
         GetPage(name: '/forgot-password', page: () => ForgotPasswordPage()),
-        GetPage(name: '/registration', page: () => RegistrationPage())
+        GetPage(name: '/registration', page: () => RegistrationPage()),
+        GetPage(name: '/main', page: () => MainPage())
       ],
     );
   }
