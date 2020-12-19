@@ -37,8 +37,12 @@ class LoginPageController extends GetxController {
     await this
         ._authService
         .signIn(login: email.value.text, password: password.value.text)
-        .then((value) => errorMessage.value = "")
-        .catchError((error) => errorMessage.value = error?.message ?? "");
+        .then((value) {
+      errorMessage.value = "";
+      Get.toNamed('main');
+    }).catchError((error) {
+      errorMessage.value = error?.message ?? "";
+    });
   }
 }
 
