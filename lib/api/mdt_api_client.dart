@@ -61,11 +61,7 @@ class MdtApiClient {
           cancelToken: options?.cancelToken ?? null,
         )
         .then(this.handleMdtApiError)
-        .catchError(
-      (err) {
-        this.onRequestError(err, url, data);
-      },
-    );
+        .catchError((err) => this.onRequestError(err, url, data));
   }
 
   Future<PreparedFetchResult<T>> fetch<T>(
@@ -104,6 +100,7 @@ class MdtApiClient {
       if (this.isApiError(json)) {
         throw MdtApiError(MdtApiErrorData.fromJson(json));
       }
+      return response;
     }
     return response;
   }
@@ -119,6 +116,7 @@ class MdtApiClient {
   }
 
   void onRequestError(dynamic error, String url, dynamic data) {
+    print("Error: ${url}");
     var errData = (error is DioError) ? error.response.data : error;
 
     if (this.isApiError(errData) == true) {

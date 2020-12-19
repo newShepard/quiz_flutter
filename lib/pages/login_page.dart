@@ -75,9 +75,7 @@ class LoginPage extends GetView<LoginPageController> {
                                 Icons.email,
                                 color: Colors.white,
                               ),
-                              onPressed: () async {
-                                await controller.singIn();
-                              },
+                              onPressed: () async => await controller.singIn(),
                             ),
                           ),
                         ),
