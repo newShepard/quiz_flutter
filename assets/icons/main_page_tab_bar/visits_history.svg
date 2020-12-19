@@ -1,0 +1,12 @@
+<svg width="48" height="48" xmlns="http://www.w3.org/2000/svg">
+    <path
+        d="M30 23v-9a2 2 0 00-2-2H14a2 2 0 00-2 2v18a2 2 0 002 2h7M31 28.083A6.002 6.002 0 0130 40a6 6 0 01-4.5-9.969"
+        stroke-width="2"
+        stroke-linecap="round"
+    />
+    <path
+        d="M31.121 30.243L29 28.12 31.121 26M32 34h-2l-2 2M16 17h10M16 22h10M16 27h4"
+        stroke-width="2"
+        stroke-linecap="round"
+    />
+</svg>
