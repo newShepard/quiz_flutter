@@ -11,7 +11,6 @@ class InputTile extends StatelessWidget {
       @required this.onClear});
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Container(
       height: 56,
       padding: EdgeInsets.only(left: 20, right: 20),
@@ -23,21 +22,28 @@ class InputTile extends StatelessWidget {
           hintText: this.hintText,
           contentPadding: EdgeInsets.only(left: 0),
           border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.all(Radius.circular(0))),
-          suffixIcon: IconButton(
-            padding: EdgeInsets.all(0),
-            hoverColor: Colors.black,
-            splashColor: Colors.yellow,
-            alignment: Alignment.centerRight,
-            icon: Icon(
-              Icons.clear,
-              size: 16,
+            borderSide: BorderSide.none,
+            borderRadius: BorderRadius.all(Radius.circular(0)),
+          ),
+          suffixIcon: Material(
+            borderRadius: BorderRadius.all(
+              Radius.circular(50),
             ),
-            onPressed: () {
-              this.onClear.call();
-              FocusScope.of(context).unfocus();
-            },
+            child: InkWell(
+              borderRadius: BorderRadius.all(
+                Radius.circular(50),
+              ),
+              hoverColor: Colors.black,
+              splashColor: Colors.yellow,
+              onTap: () {
+                this.onClear.call();
+                FocusScope.of(context).unfocus();
+              },
+              child: Icon(
+                Icons.clear,
+                size: 16,
+              ),
+            ),
           ),
         ),
       ),
