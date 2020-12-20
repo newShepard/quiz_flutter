@@ -39,7 +39,7 @@ class LoginPageController extends GetxController {
         .signIn(login: email.value.text, password: password.value.text)
         .then((value) {
       errorMessage.value = "";
-      Get.toNamed('main');
+      Get.toNamed('/merchandising');
     }).catchError((error) {
       errorMessage.value = error?.message ?? "";
     });

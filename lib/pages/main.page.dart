@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
-class MainPage extends StatelessWidget {
+class MerchandisingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(

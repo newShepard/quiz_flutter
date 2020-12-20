@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
         ),
         GetPage(name: '/forgot-password', page: () => ForgotPasswordPage()),
         GetPage(name: '/registration', page: () => RegistrationPage()),
-        GetPage(name: '/main', page: () => MainPage())
+        GetPage(name: '/merchandising', page: () => MerchandisingPage())
       ],
     );
   }
