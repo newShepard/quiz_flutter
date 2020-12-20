@@ -1,8 +1,6 @@
 import 'package:get/get.dart';
 import 'package:quiz_flutter/helpers/dependecy_injector.dart';
 import 'package:quiz_flutter/models/quiz/user.dart';
-import 'package:quiz_flutter/pages/forgot_password_page.dart';
-import 'package:quiz_flutter/pages/login_page.dart';
 import 'package:quiz_flutter/services/auth_service.dart';
 import 'package:quiz_flutter/services/user_service.dart';
 
@@ -41,10 +39,10 @@ class HomePageController extends GetxController {
     if (!(this.user?.value?.isAnonymous ?? false) &&
         this._authService.hasAccessToQuiz()) {
       this.userCanLogin.value = true;
-      Get.offNamed('/forgot-password');
+      Get.offNamed('/login');
     } else {
       this.userCanLogin.value = false;
-      Get.offNamed('/login');
+      Get.offNamed('/merchandising');
     }
   }
 }
