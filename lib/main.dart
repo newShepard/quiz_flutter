@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:quiz_flutter/bindings/home_page_bindings.dart';
@@ -8,7 +7,7 @@ import 'package:quiz_flutter/helpers/dependecy_injector.dart';
 import 'package:quiz_flutter/pages/forgot_password_page.dart';
 import 'package:quiz_flutter/pages/home_page.dart';
 import 'package:quiz_flutter/pages/login_page.dart';
-import 'package:quiz_flutter/pages/main.page.dart';
+import 'package:quiz_flutter/pages/merchandising_page.dart';
 import 'package:quiz_flutter/pages/registration_page.dart';
 
 void main() async {

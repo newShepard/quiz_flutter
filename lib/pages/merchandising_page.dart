@@ -11,12 +11,6 @@ class MerchandisingPage extends StatelessWidget {
           title: Text('Ближайшие'),
           //automaticallyImplyLeading: false, // backlink
         ),
-        body: AnnotatedRegion<SystemUiOverlayStyle>(
-          value: SystemUiOverlayStyle.light,
-          child: Center(
-            child: Text("Hello"),
-          ),
-        ),
         bottomNavigationBar: BottomNavigationBar(
           showSelectedLabels: false,
           showUnselectedLabels: false,
