@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:quiz_flutter/bindings/initial_page_bindings.dart';
 import 'package:quiz_flutter/bindings/login_page_bindings.dart';
+import 'package:quiz_flutter/bindings/merchandiser_page_bindings.dart';
 import 'package:quiz_flutter/helpers/dependecy_injector.dart';
 import 'package:quiz_flutter/pages/forgot_password_page.dart';
 import 'package:quiz_flutter/pages/initial_page.dart';
@@ -52,6 +53,7 @@ class MyApp extends StatelessWidget {
         GetPage(
           name: '/merchandising',
           page: () => MerchandisingPage(),
+          binding: MerchandiserPageBindings(),
         )
       ],
     );
