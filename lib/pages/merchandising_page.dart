@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:quiz_flutter/controllers/merchandising_page_controller.dart';
+import 'package:quiz_flutter/tabs/outlet_routes_tab.dart';
+import 'package:quiz_flutter/tabs/profile_tab.dart';
+import 'package:quiz_flutter/tabs/visits_history_tab.dart';
 
-class MerchandisingPage extends StatelessWidget {
+class MerchandisingPage extends GetView<MerchandisingPageController> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -11,30 +15,43 @@ class MerchandisingPage extends StatelessWidget {
           title: Text('Ближайшие'),
           //automaticallyImplyLeading: false, // backlink
         ),
-        bottomNavigationBar: BottomNavigationBar(
-          showSelectedLabels: false,
-          showUnselectedLabels: false,
-          items: [
-            BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.format_list_bulleted,
-                  size: 48,
+        body: Obx(() => IndexedStack(
+              index: controller.currentIndex,
+              children: [
+                VisitedOutletsTab(),
+                OutletRoutesTab(),
+                ProfileTab(),
+              ],
+            )),
+        bottomNavigationBar: Obx(() => BottomNavigationBar(
+              onTap: (index) => controller.changeTab(index),
+              currentIndex: controller.currentIndex,
+              showSelectedLabels: false,
+              showUnselectedLabels: false,
+              items: [
+                const BottomNavigationBarItem(
+                  icon: Icon(
+                    Icons.format_list_bulleted,
+                    size: 48,
+                  ),
+                  label: 'visits',
                 ),
-                label: 'visits'),
-            BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.storefront_outlined,
-                  size: 48,
+                const BottomNavigationBarItem(
+                  icon: Icon(
+                    Icons.storefront_outlined,
+                    size: 48,
+                  ),
+                  label: 'routes',
                 ),
-                label: 'routes'),
-            BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.person_outline,
-                  size: 48,
+                const BottomNavigationBarItem(
+                  icon: Icon(
+                    Icons.person_outline,
+                    size: 48,
+                  ),
+                  label: 'profile',
                 ),
-                label: 'profile'),
-          ],
-        ),
+              ],
+            )),
       ),
     );
   }
