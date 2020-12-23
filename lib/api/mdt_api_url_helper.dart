@@ -94,7 +94,7 @@ class ApiUrlHelper {
   }
 
   static String sortToString(List<QuerySorting> sorting) {
-    return '';
+    return sorting.map((e) => '${e.path} ${e.asc ? 'asc' : 'desc'}').join(',');
   }
 
   static String argToString({dynamic arg, bool isFirst, String op}) {

@@ -1,10 +1,12 @@
+import 'package:meta/meta.dart';
+
 import 'filter.dart';
 
 class QuerySorting {
   String path;
   bool asc;
 
-  QuerySorting(this.path, {this.asc});
+  QuerySorting({@required this.path, @required this.asc});
 }
 
 class Query {
