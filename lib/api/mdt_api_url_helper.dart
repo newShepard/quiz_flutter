@@ -75,14 +75,13 @@ class ApiUrlHelper {
       }
 
       var wrap = [
-            'startsWith',
-            'endsWith',
-            'contains',
-            'in',
-            'fulltext',
-            'equalTemplate'
-          ].indexOf(op ?? '') >=
-          0;
+        'startsWith',
+        'endsWith',
+        'contains',
+        'in',
+        'fulltext',
+        'equalTemplate'
+      ].contains(op ?? '');
 
       var r = '$arg1 ${op ?? ''}${wrap ? '(${arg2 ?? ''})' : ' ${arg2 ?? ''}'}';
 

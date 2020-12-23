@@ -11,5 +11,6 @@ class Utils {
     return params.entries.map((e) => "${e.key}=${e.value}").join("&");
   }
 
-  //static Future<bool> get appIsOnline => Connectivity().checkConnectivity().then((value) => value)
+  //static Future<bool> get appIsOnline
+  //=> Connectivity().checkConnectivity().then((value) => value)
 }
