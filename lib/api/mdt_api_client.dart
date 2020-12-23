@@ -1,17 +1,18 @@
+import 'dart:convert';
+
 import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_cookie_manager/dio_cookie_manager.dart';
+import 'package:meta/meta.dart';
 import 'package:quiz_flutter/api/mdt_api_url_helper.dart';
 import 'package:quiz_flutter/errors/errors.dart';
-import 'dart:convert';
 import 'package:quiz_flutter/models/mdt_api/error_data.dart';
 import 'package:quiz_flutter/models/mdt_api/fetch.dart';
 import 'package:quiz_flutter/models/mdt_api/query.dart';
 import 'package:quiz_flutter/utils/constants.dart';
-import 'package:meta/meta.dart';
 
 typedef void OnRequestError(dynamic err, String url, dynamic data);
-final Map<String, String> requestHeaders = {"Content-Type": "application/json"};
+final Map<String, String> requestHeaders = {'Content-Type': 'application/json'};
 
 class MDTApiServiceOptions {
   MDTApiServiceOptions(this.onRequestError);
@@ -19,13 +20,13 @@ class MDTApiServiceOptions {
 }
 
 class MdtRequestSettings {
-  final bool camel;
   const MdtRequestSettings({this.camel = true});
+  final bool camel;
 }
 
 class MdtRequestOptions {
-  final CancelToken cancelToken;
   MdtRequestOptions({@required this.cancelToken});
+  final CancelToken cancelToken;
 }
 
 class MdtApiClient {
@@ -34,34 +35,33 @@ class MdtApiClient {
   Dio _dio;
 
   MdtApiClient() {
-    this.apiUrl = Consts.api_url.replaceAll(new RegExp("\/\$"), "");
-    this.appUrl = Consts.app_url;
-    this._dio = new Dio();
-    final cookieJar = new CookieJar();
-    this._dio.interceptors.add(CookieManager(cookieJar));
+    apiUrl = Consts.api_url.replaceAll(RegExp('\/\$'), '');
+    appUrl = Consts.app_url;
+    _dio = Dio();
+    final cookieJar = CookieJar();
+    _dio.interceptors.add(CookieManager(cookieJar));
   }
 
   Future<Response> request(String url,
       {dynamic data,
       MdtRequestSettings settings,
       MdtRequestOptions options}) async {
-    dynamic body = null;
+    dynamic body;
 
-    if (settings != null && settings.camel) url += "?camel=true";
+    if (settings != null && settings.camel) url += '?camel=true';
     if (data != null) body = jsonEncode(data);
 
-    print("${this.apiUrl}/$url");
+    print('$apiUrl/$url');
 
-    return this
-        ._dio
+    return _dio
         .post(
-          "${this.apiUrl}/$url",
+          '$apiUrl/$url',
           options: Options(headers: requestHeaders),
           data: body,
           cancelToken: options?.cancelToken ?? null,
         )
-        .then(this.handleMdtApiError)
-        .catchError((err) => this.onRequestError(err, url, data));
+        .then(handleMdtApiError)
+        .catchError((dynamic err) => onRequestError(err, url, data));
   }
 
   Future<PreparedFetchResult<T>> fetch<T>(
@@ -70,11 +70,10 @@ class MdtApiClient {
       MdtRequestSettings settings = const MdtRequestSettings(camel: true),
       MdtRequestOptions options}) {
     var t = table ?? query.table;
-    var url = 'fetch' + (t != null ? '/' + t : '');
+    var url = 'fetch${t != null ? '/$t' : ''}';
     var data = ApiUrlHelper.query2Str(query);
 
-    return this
-        .request(url, data: data, settings: settings, options: options)
+    return request(url, data: data, settings: settings, options: options)
         .then((value) {
       var t = value.data[0];
       return preparedFetchResult<T>(t);
@@ -83,13 +82,13 @@ class MdtApiClient {
 
   PreparedFetchResult<T> preparedFetchResult<T>(dynamic data) {
     var dataMap = Map.from(data);
-    var json = new Map<String, dynamic>();
+    var json = <String, dynamic>{};
 
-    dataMap.keys.forEach((key) {
+    for (var key in dataMap.keys) {
       json[key.toString().toLowerCase()] = dataMap[key];
-    });
+    }
 
-    var m = {"count": json['count'], "records": json['rows']};
+    var m = {'count': json['count'], 'records': json['rows']};
 
     return PreparedFetchResult<T>.fromJson(m);
   }
@@ -97,7 +96,7 @@ class MdtApiClient {
   Response handleMdtApiError(Response response) {
     if (response.statusCode > 400) {
       var json = response.data;
-      if (this.isApiError(json)) {
+      if (isApiError(json)) {
         throw MdtApiError(MdtApiErrorData.fromJson(json));
       }
       return response;
@@ -108,7 +107,7 @@ class MdtApiClient {
   bool isApiError(dynamic data) {
     var condition = false;
     try {
-      condition = data["Message"] != null;
+      condition = data['Message'] != null;
     } catch (err) {
       return false;
     }
@@ -116,16 +115,16 @@ class MdtApiClient {
   }
 
   void onRequestError(dynamic error, String url, dynamic data) {
-    print("Error: ${url}");
+    print('Error: $url');
     var errData = (error is DioError) ? error.response.data : error;
 
-    if (this.isApiError(errData) == true) {
+    if (isApiError(errData) == true) {
       var err = MdtApiError(MdtApiErrorData.fromJson(errData));
       switch (err.code) {
-        case "SecurityTableAccess":
+        case 'SecurityTableAccess':
           {
             var args = err?.args;
-            if (args != null && args['User'] == "Anonymous") print("ANONYMOUS");
+            if (args != null && args['User'] == 'Anonymous') print('ANONYMOUS');
             break;
           }
         default:
