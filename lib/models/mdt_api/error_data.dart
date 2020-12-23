@@ -4,25 +4,25 @@ part 'error_data.g.dart';
 
 @JsonSerializable(createToJson: false)
 class TargetSite {
-  @JsonKey(name: "Name")
+  @JsonKey(name: 'Name')
   String name;
 
-  @JsonKey(name: "AssemblyName")
+  @JsonKey(name: 'AssemblyName')
   String assemblyName;
 
-  @JsonKey(name: "ClassName")
+  @JsonKey(name: 'ClassName')
   String className;
 
-  @JsonKey(name: "GenericArguments")
+  @JsonKey(name: 'GenericArguments')
   String genericArgumens;
 
-  @JsonKey(name: "MemberType")
+  @JsonKey(name: 'MemberType')
   num memberType;
 
-  @JsonKey(name: "Signature")
+  @JsonKey(name: 'Signature')
   String signature;
 
-  @JsonKey(name: "Signature2")
+  @JsonKey(name: 'Signature2')
   String signature2;
 
   TargetSite(
@@ -40,22 +40,22 @@ class TargetSite {
 
 @JsonSerializable(createToJson: false)
 class Debug {
-  @JsonKey(name: "Data")
+  @JsonKey(name: 'Data')
   dynamic data;
 
-  @JsonKey(name: "HResult")
+  @JsonKey(name: 'HResult')
   num hResult;
 
-  @JsonKey(name: "Message")
+  @JsonKey(name: 'Message')
   String message;
 
-  @JsonKey(name: "Source")
+  @JsonKey(name: 'Source')
   String source;
 
-  @JsonKey(name: "StackTrace")
+  @JsonKey(name: 'StackTrace')
   String stackTrace;
 
-  @JsonKey(name: "TargetSite")
+  @JsonKey(name: 'TargetSite')
   TargetSite targetSite;
 
   Debug(
@@ -71,16 +71,16 @@ class Debug {
 
 @JsonSerializable(createToJson: false)
 class MdtApiErrorData {
-  @JsonKey(name: "Args")
+  @JsonKey(name: 'Args')
   dynamic args;
 
-  @JsonKey(name: "Code")
+  @JsonKey(name: 'Code')
   String code;
 
-  @JsonKey(name: "Debug")
+  @JsonKey(name: 'Debug')
   Debug debug;
 
-  @JsonKey(name: "Message")
+  @JsonKey(name: 'Message')
   String message;
 
   MdtApiErrorData({this.args, this.code, this.debug, this.message});

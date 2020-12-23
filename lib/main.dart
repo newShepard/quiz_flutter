@@ -24,12 +24,13 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
+  @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
       navigatorKey: Get.key,
       title: 'ICS Quiz',
       initialRoute: '/',
-      theme: ThemeData(scaffoldBackgroundColor: HexColor("e8f0f3")),
+      theme: ThemeData(scaffoldBackgroundColor: HexColor('e8f0f3')),
       debugShowCheckedModeBanner: false,
       getPages: [
         GetPage(

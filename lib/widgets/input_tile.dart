@@ -13,33 +13,33 @@ class InputTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 56,
-      padding: EdgeInsets.only(left: 20, right: 20),
+      padding: const EdgeInsets.only(left: 20, right: 20),
       alignment: Alignment.center,
       color: Colors.white,
       child: TextField(
         controller: controller,
         decoration: InputDecoration(
-          hintText: this.hintText,
-          contentPadding: EdgeInsets.only(left: 0),
-          border: OutlineInputBorder(
+          hintText: hintText,
+          contentPadding: const EdgeInsets.only(left: 0),
+          border: const OutlineInputBorder(
             borderSide: BorderSide.none,
             borderRadius: BorderRadius.all(Radius.circular(0)),
           ),
           suffixIcon: Material(
-            borderRadius: BorderRadius.all(
+            borderRadius: const BorderRadius.all(
               Radius.circular(50),
             ),
             child: InkWell(
-              borderRadius: BorderRadius.all(
+              borderRadius: const BorderRadius.all(
                 Radius.circular(50),
               ),
               hoverColor: Colors.black,
               splashColor: Colors.yellow,
               onTap: () {
-                this.onClear.call();
+                onClear.call();
                 FocusScope.of(context).unfocus();
               },
-              child: Icon(
+              child: const Icon(
                 Icons.clear,
                 size: 16,
               ),

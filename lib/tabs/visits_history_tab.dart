@@ -6,11 +6,11 @@ class VisitedOutletsTab extends StatelessWidget {
     return Center(
       child: ListView.builder(itemBuilder: (BuildContext context, int idx) {
         return Container(
-          padding: EdgeInsets.all(12),
+          padding: const EdgeInsets.all(12),
           width: double.infinity,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [Text("ListItem:"), Text('${idx}')],
+            children: [const Text('ListItem:'), Text('$idx')],
           ),
         );
       }),

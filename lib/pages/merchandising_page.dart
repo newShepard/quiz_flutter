@@ -12,7 +12,7 @@ class MerchandisingPage extends GetView<MerchandisingPageController> {
       child: Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: Text('Ближайшие'),
+          title: const Text('Ближайшие'),
           //automaticallyImplyLeading: false, // backlink
         ),
         body: Obx(() => IndexedStack(

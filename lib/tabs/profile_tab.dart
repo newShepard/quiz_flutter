@@ -10,14 +10,14 @@ class ProfileTab extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text("Profile"),
+          const Text('Profile'),
           Container(
-            padding: EdgeInsets.only(top: 20),
+            padding: const EdgeInsets.only(top: 20),
             child: RaisedButton(
               onPressed: () async {
                 await auth.signOut();
               },
-              child: Text("Выйти"),
+              child: const Text('Выйти'),
             ),
           )
         ],

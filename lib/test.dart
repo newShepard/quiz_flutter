@@ -10,6 +10,7 @@ void main() async {
   var passwordClient = sl<MdtPasswordClient>();
   var authService = sl<AuthService>();
 
+  await authService.signIn(login: 'svoinkov', password: 'rB12rb');
   var user = await authService.initUser();
   print(user.fullName);
 }

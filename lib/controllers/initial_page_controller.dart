@@ -15,14 +15,14 @@ class InitialPageController extends GetxController {
 
   @override
   void onInit() async {
-    this._userService = sl<UserService>();
-    this._authService = sl<AuthService>();
+    _userService = sl<UserService>();
+    _authService = sl<AuthService>();
     super.onInit();
   }
 
   @override
   void onReady() {
-    this.initUser().then((value) {
+    initUser().then((value) {
       super.onReady();
     });
   }
@@ -33,16 +33,16 @@ class InitialPageController extends GetxController {
     } catch (error) {
       this.error.value = error;
     }
-    this.user.value = this._userService.user;
-    print(this.user.value);
+    user.value = _userService.user;
+    print(user.value);
 
-    if (!(this.user?.value?.isAnonymous ?? false) &&
-        this._authService.hasAccessToQuiz()) {
-      this.userCanLogin.value = true;
-      Get.offNamed('/login');
+    if (!(user?.value?.isAnonymous ?? false) &&
+        _authService.hasAccessToQuiz()) {
+      userCanLogin.value = true;
+      await Get.offNamed('/login');
     } else {
-      this.userCanLogin.value = false;
-      Get.offNamed('/merchandising');
+      userCanLogin.value = false;
+      await Get.offNamed('/merchandising');
     }
   }
 }

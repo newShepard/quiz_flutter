@@ -13,18 +13,18 @@ class UserService {
   bool _privacyPolicyAccepted;
 
   UserService() {
-    this._privacyPolicyAccepted = true;
-    this._mdtApiClient = sl<MdtApiClient>();
-    this._mdtAuthClient = sl<MdtAuthClient>();
-    this._authService = sl<AuthService>();
+    _privacyPolicyAccepted = true;
+    _mdtApiClient = sl<MdtApiClient>();
+    _mdtAuthClient = sl<MdtAuthClient>();
+    _authService = sl<AuthService>();
   }
 
-  QuizUser get user => this._user;
+  QuizUser get user => _user;
 
-  bool get privacyPolicyIsAccepted => this._privacyPolicyAccepted;
+  bool get privacyPolicyIsAccepted => _privacyPolicyAccepted;
 
   Future<void> init() async {
-    this._user = await this._authService.initUser();
+    _user = await _authService.initUser();
     // this._log();
   }
 

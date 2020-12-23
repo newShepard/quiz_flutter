@@ -12,11 +12,11 @@ class LoginPage extends GetView<LoginPageController> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Авторизация'),
+        title: const Text('Авторизация'),
       ),
       body: SafeArea(
         child: CustomScrollView(
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           slivers: [
             SliverFillRemaining(
               hasScrollBody: false,
@@ -34,17 +34,17 @@ class LoginPage extends GetView<LoginPageController> {
                     child: DividedGroup(
                       children: [
                         InputTile(
-                          hintText: "Введите e-mail",
+                          hintText: 'Введите e-mail',
                           controller: controller.email,
                           onClear: controller.clearEmail,
                         ),
                         InputTile(
-                          hintText: "Введите пароль",
+                          hintText: 'Введите пароль',
                           controller: controller.password,
                           onClear: controller.clearPassword,
                         ),
                         Padding(
-                          padding: EdgeInsets.only(top: 20),
+                          padding: const EdgeInsets.only(top: 20),
                           child: Obx(() => Text(controller.errorMessage.value)),
                         )
                       ],
@@ -56,22 +56,22 @@ class LoginPage extends GetView<LoginPageController> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
-                          padding: EdgeInsets.symmetric(horizontal: 20),
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
                           child: ButtonTheme(
                             minWidth: double.infinity,
                             height: 40,
-                            shape: RoundedRectangleBorder(
+                            shape: const RoundedRectangleBorder(
                               borderRadius: BorderRadius.all(
                                 Radius.circular(4),
                               ),
                             ),
                             child: RaisedButton.icon(
                               elevation: 0,
-                              label: Text(
-                                "Войти",
+                              label: const Text(
+                                'Войти',
                                 style: TextStyle(color: Colors.white),
                               ),
-                              icon: Icon(
+                              icon: const Icon(
                                 Icons.email,
                                 color: Colors.white,
                               ),
@@ -84,16 +84,16 @@ class LoginPage extends GetView<LoginPageController> {
                         Container(
                           child: ButtonTheme(
                             height: 40,
-                            shape: RoundedRectangleBorder(
+                            shape: const RoundedRectangleBorder(
                               borderRadius: BorderRadius.all(
                                 Radius.circular(4),
                               ),
                             ),
                             child: FlatButton(
                               child: Text(
-                                "Забыли пароль?",
+                                'Забыли пароль?',
                                 style: TextStyle(
-                                  color: HexColor("#345B6C"),
+                                  color: HexColor('#345B6C'),
                                 ),
                               ),
                               onPressed: () => Get.toNamed('/forgot-password'),
@@ -103,16 +103,16 @@ class LoginPage extends GetView<LoginPageController> {
                         Container(
                           child: ButtonTheme(
                             height: 40,
-                            shape: RoundedRectangleBorder(
+                            shape: const RoundedRectangleBorder(
                               borderRadius: BorderRadius.all(
                                 Radius.circular(4),
                               ),
                             ),
                             child: FlatButton(
                               child: Text(
-                                "Регистрация",
+                                'Регистрация',
                                 style: TextStyle(
-                                  color: HexColor("#345B6C"),
+                                  color: HexColor('#345B6C'),
                                 ),
                               ),
                               onPressed: () => Get.toNamed('/registration'),

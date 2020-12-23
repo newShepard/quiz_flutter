@@ -9,7 +9,8 @@ import 'package:quiz_flutter/models/mdt_api/user.dart';
 import 'package:quiz_flutter/models/quiz/user.dart';
 import 'package:meta/meta.dart';
 
-const QUIZ_GROUPS = ["Questionnaire", "QuestionnaireAdministrator"];
+const QUIZ_GROUPS = ['Questionnaire', 'QuestionnaireAdministrator'];
+
 typedef Future<void> AuthServuceInitCb(QuizUser user);
 
 class AuthServiceOptions {
@@ -24,17 +25,17 @@ class AuthService {
 
   QuizUser user;
   AuthService() {
-    this._mdtApiClient = sl<MdtApiClient>();
-    this._mdtAuthClient = sl<MdtAuthClient>();
-    this._mdtPasswordClient = sl<MdtPasswordClient>();
-    this.user = null;
+    _mdtApiClient = sl<MdtApiClient>();
+    _mdtAuthClient = sl<MdtAuthClient>();
+    _mdtPasswordClient = sl<MdtPasswordClient>();
+    user = null;
   }
 
   Future<QuizUser> initUser() async {
-    var mdtUser = await this._mdtAuthClient.getMdtUser();
+    var mdtUser = await _mdtAuthClient.getMdtUser();
     MdtApiPrincipal mdtPrincipal;
-    if (this.isUserLoggedIn(mdtUser)) {
-      mdtPrincipal = await this.getMdtPrincipal(mdtUser.id);
+    if (isUserLoggedIn(mdtUser)) {
+      mdtPrincipal = await getMdtPrincipal(mdtUser.id);
     }
     //await userService.updateUserSettings
     return QuizUser.create(mdtUser, mdtPrincipal);
@@ -42,19 +43,18 @@ class AuthService {
 
   Future<void> signIn(
       {@required String login, @required String password}) async {
-    await this
-        ._mdtAuthClient
-        .signIn(login: login, password: password, rememberMe: true);
-    await this.initUser();
+    await _mdtAuthClient.signIn(
+        login: login, password: password, rememberMe: true);
+    await initUser();
   }
 
   Future<void> signOut() async {
-    await this._mdtAuthClient.signOut();
-    await this.initUser();
+    await _mdtAuthClient.signOut();
+    await initUser();
   }
 
   Future<void> forgotPassword({@required String login}) async {
-    await this._mdtPasswordClient.sendForgotPassword(login: login);
+    await _mdtPasswordClient.sendForgotPassword(login: login);
   }
 
   Future<void> setPassword() async {}
@@ -62,7 +62,7 @@ class AuthService {
   Future<void> changePassword() async {}
 
   bool isSupervisor() {
-    return this.user.flagSuperVisor;
+    return user.flagSuperVisor;
   }
 
   bool hasAccessToQuiz() {
@@ -82,23 +82,22 @@ class AuthService {
   Future<void> registerUser() async {}
 
   Future<MdtApiPrincipal> getMdtPrincipal(int userId) async {
-    return await this
-        ._mdtApiClient
+    return await _mdtApiClient
         .fetch(
-          query: Query(
-            table: 'qst.PrincipalCache',
-            filter: FilterHelper.eq('ID', userId),
-            select: [
-              'FlagAdmin',
-              'FlagGetLog',
-              'FlagRouteExists',
-              'FlagSuperVisor',
-              'ID_Position',
-              'ID_Employee/*',
-              'ID_UserSettings/*'
-            ],
-          ),
-        )
+      query: Query(
+        table: 'qst.PrincipalCache',
+        filter: FilterHelper.eq('ID', userId),
+        select: [
+          'FlagAdmin',
+          'FlagGetLog',
+          'FlagRouteExists',
+          'FlagSuperVisor',
+          'ID_Position',
+          'ID_Employee/*',
+          'ID_UserSettings/*'
+        ],
+      ),
+    )
         .then((value) {
       var val = value.records[0];
       return MdtApiPrincipal.fromJson(val);

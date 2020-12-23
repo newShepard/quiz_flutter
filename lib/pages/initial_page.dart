@@ -8,7 +8,7 @@ class HomePage extends GetView<InitialPageController> {
     return Scaffold(
       body: FutureBuilder(
         future: controller.initUser(),
-        builder: (_, __) => Center(
+        builder: (_, __) => const Center(
           child: CircularProgressIndicator(),
         ),
       ),

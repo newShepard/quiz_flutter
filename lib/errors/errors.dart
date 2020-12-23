@@ -6,8 +6,8 @@ abstract class QuizError extends Error {
 
   @override
   String toString() {
-    var string = '${this.name}';
-    if (this.message != null) string = string += ': ${this.message}';
+    var string = '$name';
+    if (message != null) string = string += ': $message';
     return string;
   }
 }
@@ -17,16 +17,16 @@ class MdtApiError extends QuizError {
   dynamic args;
 
   MdtApiError(MdtApiErrorData data) {
-    this.name = 'MDT API Error';
-    this.message = data.message;
-    this.code = data.code;
-    this.args = data.args;
+    name = 'MDT API Error';
+    message = data.message;
+    code = data.code;
+    args = data.args;
   }
 }
 
 class OfflineError extends QuizError {
   OfflineError() {
-    this.name = 'Offline error';
-    this.message = 'Check your internet connection';
+    name = 'Offline error';
+    message = 'Check your internet connection';
   }
 }

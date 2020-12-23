@@ -12,9 +12,9 @@ class LoginPageController extends GetxController {
 
   @override
   void onInit() {
-    this.email = TextEditingController();
-    this.password = TextEditingController();
-    this._authService = sl<AuthService>();
+    email = TextEditingController();
+    password = TextEditingController();
+    _authService = sl<AuthService>();
     super.onInit();
   }
 
@@ -27,21 +27,20 @@ class LoginPageController extends GetxController {
 
   void changeEmail(String value) => email.text = value;
 
-  void clearEmail() => email.text = "";
+  void clearEmail() => email.text = '';
 
   void changePassword(String value) => password.text = value;
 
-  void clearPassword() => password.text = "";
+  void clearPassword() => password.text = '';
 
   Future<void> singIn() async {
-    await this
-        ._authService
+    await _authService
         .signIn(login: email.value.text, password: password.value.text)
         .then((value) {
-      errorMessage.value = "";
+      errorMessage.value = '';
       Get.toNamed('/merchandising');
     }).catchError((error) {
-      errorMessage.value = error?.message ?? "";
+      errorMessage.value = error?.message ?? '';
     });
   }
 }

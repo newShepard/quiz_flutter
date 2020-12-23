@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 class OutletRoutesTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text("Routes"),
+    return const Center(
+      child: Text('Routes'),
     );
   }
 }

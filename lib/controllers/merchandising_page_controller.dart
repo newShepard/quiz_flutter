@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
 
-enum MerchandisingTabs { VisitedOutlets, OutletRoutes, Profile }
+//enum MerchandisingTabs { VisitedOutlets, OutletRoutes, Profile }
 
-final List _tabs = [];
+//final List _tabs = [];
 
 class MerchandisingPageController extends GetxController
     with SingleGetTickerProviderMixin {
@@ -26,7 +26,7 @@ class MerchandisingPageController extends GetxController
   }
 
   void changeTab(int index) {
-    print("tab changed");
+    print('tab changed');
     //_tabController.index = index;
     _currentIndex.value = index;
     //update();

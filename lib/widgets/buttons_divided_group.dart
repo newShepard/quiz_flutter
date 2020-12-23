@@ -20,7 +20,7 @@ class _DividedGroupState extends State<DividedGroup> {
         if (e.key == widget.children.length - 1) return e.value;
         return Column(children: [
           e.value,
-          Divider(
+          const Divider(
             color: Colors.grey,
             height: 1,
             thickness: 1,
