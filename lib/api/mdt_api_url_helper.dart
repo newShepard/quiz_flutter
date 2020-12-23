@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:quiz_flutter/models/mdt_api/filter.dart';
 import 'package:quiz_flutter/models/mdt_api/query.dart';
-import 'package:meta/meta.dart';
 
 const Map<String, String> negationFilterAliases = {
   'notStartsWith': 'startsWith',
@@ -12,7 +11,7 @@ const Map<String, String> negationFilterAliases = {
 
 class ApiUrlHelper {
   static dynamic query2Str(Query query) {
-    Map<String, dynamic> request = {};
+    var request = <String, dynamic>{};
 
     if (query.select?.length != null) {
       var queryLength = query.select?.length;
@@ -48,10 +47,10 @@ class ApiUrlHelper {
       var result = filter.groups
           ?.map((e) => ApiUrlHelper.filterToString(e, table))
           ?.where((element) => element?.isNotEmpty == true)
-          ?.join(' ' + filter.op + ' ');
+          ?.join(' ${filter.op} ');
 
       return result != null
-          ? (filter.not == true ? 'not' : '') + '(' + result + ')'
+          ? '${filter.not == true ? 'not' : ''}($result)'
           : '';
     } else if (filter.p1 != null && filter.p2 != null) {
       var op = ApiUrlHelper.prepareOp(filter.op);
@@ -69,28 +68,25 @@ class ApiUrlHelper {
       var arg2 =
           ApiUrlHelper.argToString(arg: filter.p2, isFirst: false, op: op);
 
-      arg1 = '[' + (arg1 ?? '') + ']';
+      arg1 = '[${arg1 ?? ''}]';
 
       if (filter.p2 is DateTime) {
-        arg2 = '"' + (filter.p2 as DateTime).toIso8601String() + '"';
+        arg2 = '"${(filter.p2 as DateTime).toIso8601String()}"';
       }
 
       var wrap = [
-            "startsWith",
-            "endsWith",
-            "contains",
-            "in",
-            "fulltext",
-            "equalTemplate"
+            'startsWith',
+            'endsWith',
+            'contains',
+            'in',
+            'fulltext',
+            'equalTemplate'
           ].indexOf(op ?? '') >=
           0;
 
-      var r = arg1 +
-          " " +
-          (op ?? '') +
-          (wrap ? '(' + (arg2 ?? '') + ')' : ' ' + (arg2 ?? ''));
+      var r = '$arg1 ${op ?? ''}${wrap ? '(${arg2 ?? ''})' : ' ${arg2 ?? ''}'}';
 
-      if (not ?? false) r = 'not(" + ${r} + ")';
+      if (not ?? false) r = 'not(" + $r + ")';
 
       return r;
     } else {
