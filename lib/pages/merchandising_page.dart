@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:quiz_flutter/controllers/merchandising_page_controller.dart';
-import 'package:quiz_flutter/tabs/outlet_routes_tab.dart';
+import 'package:quiz_flutter/tabs/outlets_tab.dart';
 import 'package:quiz_flutter/tabs/profile_tab.dart';
 import 'package:quiz_flutter/tabs/visits_history_tab.dart';
 
@@ -13,13 +13,13 @@ class MerchandisingPage extends GetView<MerchandisingPageController> {
         appBar: AppBar(
           centerTitle: true,
           title: const Text('Ближайшие'),
-          //automaticallyImplyLeading: false, // backlink
+          automaticallyImplyLeading: false, // backlink
         ),
         body: Obx(() => IndexedStack(
               index: controller.currentIndex,
               children: [
                 VisitedOutletsTab(),
-                OutletRoutesTab(),
+                OutletsTab(),
                 ProfileTab(),
               ],
             )),
@@ -41,7 +41,7 @@ class MerchandisingPage extends GetView<MerchandisingPageController> {
                     Icons.storefront_outlined,
                     size: 48,
                   ),
-                  label: 'routes',
+                  label: 'outlets',
                 ),
                 const BottomNavigationBarItem(
                   icon: Icon(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class OutletRoutesTab extends StatelessWidget {
+class OutletsTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Center(
