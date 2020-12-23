@@ -12,7 +12,6 @@ class OutletsTab extends StatelessWidget {
           future: outletService.getNearestOutlets(),
           builder: (BuildContext context, AsyncSnapshot snapshot) {
             if (snapshot.hasData) {
-              o = snapshot.data;
               return ListView.builder(
                   itemCount: snapshot.data?.records?.length,
                   itemBuilder: (BuildContext context, int idx) {
