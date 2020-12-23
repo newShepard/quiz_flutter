@@ -14,46 +14,44 @@ class MdtPasswordClient {
   MdtApiClient _mdtApiClient;
 
   MdtPasswordClient() {
-    this._mdtApiClient = sl<MdtApiClient>();
+    _mdtApiClient = sl<MdtApiClient>();
   }
 
   String _getPasswordUrl() {
-    return this._mdtApiClient.appUrl + '/#!' + passwordUrl;
+    return '${_mdtApiClient.appUrl}/#!$passwordUrl';
   }
 
-  Future<Response> _request(String url_path,
+  Future<Response> _request(String urlPath,
       {Map<String, dynamic> data,
       MdtRequestSettings settings = const MdtRequestSettings(camel: true),
       MdtRequestOptions options}) {
-    return this
-        ._mdtApiClient
-        .request(url_path, data: data, settings: settings, options: options);
+    return _mdtApiClient.request(urlPath,
+        data: data, settings: settings, options: options);
   }
 
   Future<AuthData> checkRegistration() {
-    return this
-        ._request('password/checkregistration')
+    return _request('password/checkregistration')
         .then((value) => AuthData.fromJson(jsonDecode(value.toString())));
   }
 
   Future<Response> register({@required UserRegistrationData data}) {
-    return this._request('password/register',
-        data: {'user': data.toJson(), 'url': this._getPasswordUrl()});
+    return _request('password/register',
+        data: {'user': data.toJson(), 'url': _getPasswordUrl()});
   }
 
   Future<Response> sendForgotPassword({@required String login}) {
-    return this._request('password/sendforgotpassword',
-        data: {'login': login, 'url': this._getPasswordUrl()});
+    return _request('password/sendforgotpassword',
+        data: {'login': login, 'url': _getPasswordUrl()});
   }
 
   Future<Response> setPassword({@required SetPasswordData data}) {
-    return this._request('password/setpassword', data: data.toJson());
+    return _request('password/setpassword', data: data.toJson());
   }
 
   Future<Response> changePassword(
       {@required ChangePasswordData data, @required bool reset}) {
     var method = reset ? 'resetPassword' : 'changePassword';
     var urlParams = Utils.getUrlParams(data.toJson());
-    return this._request('security/${method}${urlParams}');
+    return _request('security/$method$urlParams');
   }
 }
