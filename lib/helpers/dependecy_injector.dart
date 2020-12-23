@@ -3,6 +3,7 @@ import 'package:quiz_flutter/api/mdt_api_client.dart';
 import 'package:quiz_flutter/api/mdt_auth_client.dart';
 import 'package:quiz_flutter/api/mdt_password_client.dart';
 import 'package:quiz_flutter/services/auth_service.dart';
+import 'package:quiz_flutter/services/outlet_service.dart';
 import 'package:quiz_flutter/services/user_service.dart';
 
 /// Service locator
@@ -16,5 +17,6 @@ Future<void> injectDependencies() async {
     ..registerSingleton<MdtPasswordClient>(MdtPasswordClient())
     // services
     ..registerSingleton<AuthService>(AuthService())
-    ..registerSingleton<UserService>(UserService());
+    ..registerSingleton<UserService>(UserService())
+    ..registerSingleton<OutletService>(OutletService());
 }
