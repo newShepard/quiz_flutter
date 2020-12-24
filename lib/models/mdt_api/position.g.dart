@@ -8,14 +8,14 @@ part of 'position.dart';
 
 MdtApiPosition _$MdtApiPositionFromJson(Map<String, dynamic> json) {
   return MdtApiPosition()
-    ..employee = json['employee'] == null
-        ? null
-        : Employee.fromJson(json['employee'] as Map<String, dynamic>)
-    ..postlevel = json['postlevel'] as int
-    ..bindingFunction = json['bindingFunction'] == null
+    ..bindingFunction = json[r'id_BindingFunction$'] == null
         ? null
         : MdtApiBindingFunction.fromJson(
-            json['bindingFunction'] as Map<String, dynamic>);
+            json[r'id_BindingFunction$'] as Map<String, dynamic>)
+    ..employee = json[r'id_Employee$'] == null
+        ? null
+        : Employee.fromJson(json[r'id_Employee$'] as Map<String, dynamic>)
+    ..postlevel = json['postlevel'] as int;
 }
 
 MdtApiBindingFunction _$MdtApiBindingFunctionFromJson(

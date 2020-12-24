@@ -18,6 +18,7 @@ void main() async {
   var outlets = await outletService.getNearestOutlets();
 
   for (var i = 0; i < outlets.length; i++) {
-    print(outlets[i].address);
+    var record = outlets[i];
+    print(record.distance);
   }
 }

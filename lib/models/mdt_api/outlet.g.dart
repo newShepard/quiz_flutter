@@ -13,15 +13,16 @@ MdtApiOutlet _$MdtApiOutletFromJson(Map<String, dynamic> json) {
     ..code = json['code'] as String
     ..address = json['address'] as String
     ..phone = json['phone'] as String
-    ..type = json['type'] == null
+    ..type = json[r'id_OutletType$'] == null
         ? null
-        : MdtApiOutletType.fromJson(json['type'] as Map<String, dynamic>)
+        : MdtApiOutletType.fromJson(
+            json[r'id_OutletType$'] as Map<String, dynamic>)
     ..legalEntity = json['legalEntity'] == null
         ? null
         : LegalEntity.fromJson(json['legalEntity'] as Map<String, dynamic>)
-    ..outletChain = json['outletChain'] == null
+    ..outletChain = json[r'id_OutletChain$'] == null
         ? null
-        : OutletChain.fromJson(json['outletChain'] as Map<String, dynamic>)
+        : OutletChain.fromJson(json[r'id_OutletChain$'] as Map<String, dynamic>)
     ..positions = (json['positions'] as List)
         ?.map((e) => e == null
             ? null

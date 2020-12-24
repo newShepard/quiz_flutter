@@ -18,13 +18,13 @@ class MdtApiOutlet with Recordable, Nameable {
   @JsonKey(nullable: true)
   String phone;
 
-  @JsonKey(nullable: true)
+  @JsonKey(nullable: true, name: 'id_OutletType\$')
   MdtApiOutletType type;
 
   @JsonKey(nullable: true)
   LegalEntity legalEntity;
 
-  @JsonKey(nullable: true)
+  @JsonKey(nullable: true, name: 'id_OutletChain\$')
   OutletChain outletChain;
 
   @JsonKey(nullable: true)

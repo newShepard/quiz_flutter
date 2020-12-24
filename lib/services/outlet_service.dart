@@ -1,7 +1,7 @@
 import 'package:quiz_flutter/api/mdt_api_client.dart';
 import 'package:quiz_flutter/helpers/dependecy_injector.dart';
-import 'package:quiz_flutter/models/mdt_api/outlet.dart';
 import 'package:quiz_flutter/models/mdt_api/query.dart';
+import 'package:quiz_flutter/models/mdt_api/user_defined_functions/qst.udf_outlets_with_distance.dart';
 
 class OutletService {
   MdtApiClient _mdtApiClient;
@@ -10,7 +10,7 @@ class OutletService {
     _mdtApiClient = sl<MdtApiClient>();
   }
 
-  Future<List<MdtApiOutlet>> getNearestOutlets() async {
+  Future<List<MdtApiOutletWithDistance>> getNearestOutlets() async {
     return _mdtApiClient
         .fetch(
           query: Query(
@@ -41,10 +41,10 @@ class OutletService {
         .then((fetchResult) => _prepareOutlet(fetchResult.records));
   }
 
-  List<MdtApiOutlet> _prepareOutlet(List<dynamic> records) {
+  List<MdtApiOutletWithDistance> _prepareOutlet(List<dynamic> records) {
     return records.map(
       (record) {
-        return MdtApiOutlet.fromJson(record['id_Outlet\$']);
+        return MdtApiOutletWithDistance.fromJson(record);
       },
     ).toList();
   }
