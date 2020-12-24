@@ -1,8 +1,9 @@
 import 'package:quiz_flutter/models/common.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:quiz_flutter/models/mdt_api/employee.dart';
 import 'package:quiz_flutter/models/mdt_api/legal_entity.dart';
 import 'package:quiz_flutter/models/mdt_api/outlet_chain.dart';
+import 'package:quiz_flutter/models/mdt_api/outlet_type.dart';
+import 'package:quiz_flutter/models/mdt_api/position.dart';
 
 part 'outlet.g.dart';
 
@@ -12,19 +13,13 @@ class MdtApiOutlet with Recordable, Nameable {
   String code;
 
   @JsonKey(nullable: true)
-  String iconName;
-
-  @JsonKey(nullable: true)
   String address;
 
   @JsonKey(nullable: true)
   String phone;
 
   @JsonKey(nullable: true)
-  String type;
-
-  @JsonKey(nullable: true)
-  String format;
+  MdtApiOutletType type;
 
   @JsonKey(nullable: true)
   LegalEntity legalEntity;
@@ -33,7 +28,7 @@ class MdtApiOutlet with Recordable, Nameable {
   OutletChain outletChain;
 
   @JsonKey(nullable: true)
-  List<Employee> employees;
+  List<MdtApiPosition> positions;
 
   MdtApiOutlet();
 

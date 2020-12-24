@@ -10,36 +10,42 @@ class OutletService {
     _mdtApiClient = sl<MdtApiClient>();
   }
 
-  Future<dynamic> getNearestOutlets() async {
-    return _mdtApiClient.fetch(
-      query: Query(
-        select: [
-          'Distance',
-          'FlagQuestionnairesEmpty',
-          'ID_Outlet/ID',
-          'ID_Outlet/Code',
-          'ID_Outlet/Name',
-          'ID_Outlet/ID_OutletChain/NameShort',
-          'ID_Outlet/ID_OutletChain/ID_Parent/NameShort',
-          'ID_Outlet/ID_OutletFormat/Name',
-          'ID_Outlet/Address',
-          'ID_Outlet/Positions/ID_Employee/*',
-          'ID_Outlet/Positions/PostLevel',
-          'ID_Outlet/ID_OutletType/*',
-          'ID_Outlet/Positions/ID_BindingFunction/*',
-          'ID_VisitLast/DateBegin',
-          'ID_VisitLast/DateEnd',
-          'ID_VisitLast/DateSubmitLocal',
-          'ID_VisitLast/ID_em_Employee/Name'
-        ],
-        params: '[54.7137581, 20.5271002, 1000]',
-        sorting: [QuerySorting(path: 'Distance', asc: false)],
-      ),
-      table: 'qst.udf_OutletsWithDistance',
-    );
-    //     .then((value) {
-    //   var t = MdtApiOutlet.fromJson(value.records[0]['id_Outlet\$']);
-    //   print(t);
-    // });
+  Future<List<MdtApiOutlet>> getNearestOutlets() async {
+    return _mdtApiClient
+        .fetch(
+          query: Query(
+            select: [
+              'Distance',
+              'FlagQuestionnairesEmpty',
+              'ID_Outlet/ID',
+              'ID_Outlet/Code',
+              'ID_Outlet/Name',
+              'ID_Outlet/ID_OutletChain/NameShort',
+              'ID_Outlet/ID_OutletChain/ID_Parent/NameShort',
+              'ID_Outlet/ID_OutletFormat/Name',
+              'ID_Outlet/Address',
+              'ID_Outlet/Positions/ID_Employee/*',
+              'ID_Outlet/Positions/PostLevel',
+              'ID_Outlet/ID_OutletType/*',
+              'ID_Outlet/Positions/ID_BindingFunction/*',
+              'ID_VisitLast/DateBegin',
+              'ID_VisitLast/DateEnd',
+              'ID_VisitLast/DateSubmitLocal',
+              'ID_VisitLast/ID_em_Employee/Name'
+            ],
+            params: '[54.7137581, 20.5271002, 1000]',
+            sorting: [QuerySorting(path: 'Distance', asc: false)],
+          ),
+          table: 'qst.udf_OutletsWithDistance',
+        )
+        .then((fetchResult) => _prepareOutlet(fetchResult.records));
+  }
+
+  List<MdtApiOutlet> _prepareOutlet(List<dynamic> records) {
+    return records.map(
+      (record) {
+        return MdtApiOutlet.fromJson(record['id_Outlet\$']);
+      },
+    ).toList();
   }
 }
