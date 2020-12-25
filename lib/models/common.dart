@@ -1,11 +1,11 @@
-mixin IRecord {
+abstract class IRecord {
   int id;
 }
 
-mixin ISort {
+abstract class ISort {
   int sortOtder;
 }
 
-mixin IName {
+abstract class IName {
   String name;
 }
