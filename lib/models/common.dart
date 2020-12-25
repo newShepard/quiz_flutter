@@ -1,11 +1,11 @@
-mixin Recordable {
+mixin IRecord {
   int id;
 }
 
-mixin Sortable {
+mixin ISort {
   int sortOtder;
 }
 
-mixin Nameable {
+mixin IName {
   String name;
 }

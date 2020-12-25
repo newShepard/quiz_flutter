@@ -4,7 +4,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'legal_entity.g.dart';
 
 @JsonSerializable(createToJson: false)
-class LegalEntity with Recordable, Nameable {
+class LegalEntity with IRecord, IName {
   @JsonKey(nullable: true)
   String tin;
 

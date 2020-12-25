@@ -4,7 +4,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'outlet_type.g.dart';
 
 @JsonSerializable(createToJson: false)
-class MdtApiOutletType with Recordable, Nameable {
+class MdtApiOutletType with IRecord, IName {
   String code;
   String icon;
   String uid_ds;

@@ -4,7 +4,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'outlet_chain.g.dart';
 
 @JsonSerializable(createToJson: false)
-class OutletChain with Recordable, Nameable {
+class OutletChain with IRecord, IName {
   @JsonKey(nullable: true)
   String type;
 

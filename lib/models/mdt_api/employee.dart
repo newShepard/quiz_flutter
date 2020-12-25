@@ -4,7 +4,7 @@ import '../common.dart';
 part 'employee.g.dart';
 
 @JsonSerializable()
-class Employee with Recordable, Nameable {
+class Employee with IRecord, IName {
   String code;
   Employee();
 

@@ -8,7 +8,7 @@ import 'package:quiz_flutter/models/mdt_api/position.dart';
 part 'outlet.g.dart';
 
 @JsonSerializable(createToJson: false)
-class MdtApiOutlet with Recordable, Nameable {
+class MdtApiOutlet with IRecord, IName {
   @JsonKey(nullable: true)
   String code;
 

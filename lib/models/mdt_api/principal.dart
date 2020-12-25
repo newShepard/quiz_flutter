@@ -5,7 +5,7 @@ import '../common.dart';
 part 'principal.g.dart';
 
 @JsonSerializable(createToJson: false)
-class UserSettings with Recordable {
+class UserSettings with IRecord {
   bool flagAcceptPrivacyPolicy;
   int id_mdt_Principal;
 

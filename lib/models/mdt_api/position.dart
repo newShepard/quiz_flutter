@@ -22,7 +22,7 @@ class MdtApiPosition {
 }
 
 @JsonSerializable(createToJson: false)
-class MdtApiBindingFunction with Recordable, Nameable {
+class MdtApiBindingFunction with IRecord, IName {
   @JsonKey(nullable: true)
   String code;
 
