@@ -5,16 +5,11 @@ part 'outlet_last_visit.g.dart';
 
 @JsonSerializable(createToJson: false)
 class MdtApiOutletLastVisit {
-  @JsonKey(nullable: true)
   DateTime dateBegin;
-
-  @JsonKey(nullable: true)
   DateTime dateEnd;
-
-  @JsonKey(nullable: true)
   DateTime dateSubmitLocal;
 
-  @JsonKey(nullable: true, name: 'id_em_Employee\$')
+  @JsonKey(name: 'id_em_Employee\$')
   Employee employee;
 
   MdtApiOutletLastVisit();

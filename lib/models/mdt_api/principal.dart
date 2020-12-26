@@ -21,10 +21,10 @@ abstract class IMdtApiPrincipal {
   bool flagRouteExsits;
   bool flagSuperVisor;
 
-  @JsonKey(name: 'id_Employee\$', nullable: true)
+  @JsonKey(name: 'id_Employee\$')
   Employee employee;
 
-  @JsonKey(name: 'id_UserSettings\$', nullable: true)
+  @JsonKey(name: 'id_UserSettings\$')
   UserSettings userSettings;
 }
 

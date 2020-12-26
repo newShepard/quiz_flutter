@@ -5,7 +5,6 @@ part 'legal_entity.g.dart';
 
 @JsonSerializable(createToJson: false)
 class LegalEntity with IRecord, IName {
-  @JsonKey(nullable: true)
   String tin;
 
   LegalEntity();

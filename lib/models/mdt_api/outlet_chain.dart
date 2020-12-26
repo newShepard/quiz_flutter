@@ -5,13 +5,8 @@ part 'outlet_chain.g.dart';
 
 @JsonSerializable(createToJson: false)
 class OutletChain with IRecord, IName {
-  @JsonKey(nullable: true)
   String type;
-
-  @JsonKey(nullable: true)
   String nameShort;
-
-  @JsonKey(nullable: true)
   OutletChainParent parent;
 
   OutletChain();
@@ -22,10 +17,7 @@ class OutletChain with IRecord, IName {
 
 @JsonSerializable(createToJson: false)
 class OutletChainParent {
-  @JsonKey(nullable: true)
   String name;
-
-  @JsonKey(nullable: true)
   String nameShort;
 
   OutletChainParent();

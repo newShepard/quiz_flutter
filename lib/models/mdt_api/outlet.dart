@@ -9,25 +9,18 @@ part 'outlet.g.dart';
 
 @JsonSerializable(createToJson: false)
 class MdtApiOutlet with IRecord, IName {
-  @JsonKey(nullable: true)
   String code;
-
-  @JsonKey(nullable: true)
   String address;
-
-  @JsonKey(nullable: true)
   String phone;
 
-  @JsonKey(nullable: true, name: 'id_OutletType\$')
+  @JsonKey(name: 'id_OutletType\$')
   MdtApiOutletType type;
 
-  @JsonKey(nullable: true)
   LegalEntity legalEntity;
 
-  @JsonKey(nullable: true, name: 'id_OutletChain\$')
+  @JsonKey(name: 'id_OutletChain\$')
   OutletChain outletChain;
 
-  @JsonKey(nullable: true)
   List<MdtApiPosition> positions;
 
   MdtApiOutlet();

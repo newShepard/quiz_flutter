@@ -6,16 +6,13 @@ part 'qst.udf_outlets_with_distance.g.dart';
 
 @JsonSerializable(createToJson: false)
 class MdtApiOutletWithDistance {
-  @JsonKey(nullable: true)
   num distance;
-
-  @JsonKey(nullable: true)
   bool flagQuestionnairesEmpty;
 
-  @JsonKey(nullable: true, name: 'id_Outlet\$')
+  @JsonKey(name: 'id_Outlet\$')
   MdtApiOutlet outlet;
 
-  @JsonKey(nullable: true, name: 'id_VisitLast\$')
+  @JsonKey(name: 'id_VisitLast\$')
   MdtApiOutletLastVisit lastVisit;
 
   MdtApiOutletWithDistance();

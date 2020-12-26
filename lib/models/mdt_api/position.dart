@@ -6,13 +6,12 @@ part 'position.g.dart';
 
 @JsonSerializable(createToJson: false)
 class MdtApiPosition {
-  @JsonKey(nullable: true, name: 'id_BindingFunction\$')
+  @JsonKey(name: 'id_BindingFunction\$')
   MdtApiBindingFunction bindingFunction;
 
-  @JsonKey(nullable: true, name: 'id_Employee\$')
+  @JsonKey(name: 'id_Employee\$')
   Employee employee;
 
-  @JsonKey(nullable: true)
   int postlevel;
 
   MdtApiPosition();
@@ -23,7 +22,6 @@ class MdtApiPosition {
 
 @JsonSerializable(createToJson: false)
 class MdtApiBindingFunction with IRecord, IName {
-  @JsonKey(nullable: true)
   String code;
 
   MdtApiBindingFunction();
