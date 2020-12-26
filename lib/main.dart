@@ -30,7 +30,10 @@ class MyApp extends StatelessWidget {
       navigatorKey: Get.key,
       title: 'ICS Quiz',
       initialRoute: '/',
-      theme: ThemeData(scaffoldBackgroundColor: HexColor('e8f0f3')),
+      theme: ThemeData(
+        scaffoldBackgroundColor: HexColor('e8f0f3'),
+        primaryColor: HexColor('29abe2'),
+      ),
       debugShowCheckedModeBanner: false,
       getPages: [
         GetPage(
