@@ -1,7 +1,7 @@
 import 'package:quiz_flutter/models/mdt_api/principal.dart';
 import 'package:quiz_flutter/models/mdt_api/user.dart';
 
-class QuizUser with AbstractMdtApiUser, AbstractMdtApiPrincipal {
+class QuizUser with IMdtApiUser, IMdtApiPrincipal {
   QuizUser._();
   factory QuizUser.create(MdtApiUser mdtUser, MdtApiPrincipal mdtPrincipal) {
     return QuizUser._()

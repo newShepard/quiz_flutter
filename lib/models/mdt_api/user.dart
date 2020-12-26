@@ -16,7 +16,7 @@ class MdtApiUserSettings {
       _$MdtApiUserSettingsFromJson(json);
 }
 
-abstract class AbstractMdtApiUser {
+abstract class IMdtApiUser {
   int id;
   String fullName;
   String email;
@@ -29,7 +29,7 @@ abstract class AbstractMdtApiUser {
 }
 
 @JsonSerializable()
-class MdtApiUser with AbstractMdtApiUser {
+class MdtApiUser with IMdtApiUser {
   MdtApiUser();
 
   factory MdtApiUser.fromJson(Map<String, dynamic> json) =>

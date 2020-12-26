@@ -15,7 +15,7 @@ class UserSettings with IRecord {
       _$UserSettingsFromJson(json);
 }
 
-abstract class AbstractMdtApiPrincipal {
+abstract class IMdtApiPrincipal {
   bool flagAdmin;
   bool flagGetlog;
   bool flagRouteExsits;
@@ -29,7 +29,7 @@ abstract class AbstractMdtApiPrincipal {
 }
 
 @JsonSerializable(createToJson: false)
-class MdtApiPrincipal with AbstractMdtApiPrincipal {
+class MdtApiPrincipal with IMdtApiPrincipal {
   MdtApiPrincipal();
 
   factory MdtApiPrincipal.fromJson(Map<String, dynamic> json) =>
