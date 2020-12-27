@@ -66,6 +66,7 @@ class LoginPage extends GetView<LoginPageController> {
                               ),
                             ),
                             child: RaisedButton.icon(
+                              color: HexColor('29abe2'),
                               elevation: 0,
                               label: const Text(
                                 'Войти',
