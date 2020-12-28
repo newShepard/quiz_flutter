@@ -4,11 +4,14 @@ class InputTile extends StatelessWidget {
   final String hintText;
   final TextEditingController controller;
   final void Function() onClear;
+  final bool obscureText;
 
-  const InputTile(
-      {@required this.hintText,
-      @required this.controller,
-      @required this.onClear});
+  const InputTile({
+    @required this.hintText,
+    @required this.controller,
+    @required this.onClear,
+    this.obscureText = false,
+  });
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -17,6 +20,7 @@ class InputTile extends StatelessWidget {
       alignment: Alignment.center,
       color: Colors.white,
       child: TextField(
+        obscureText: obscureText,
         controller: controller,
         decoration: InputDecoration(
           hintText: hintText,

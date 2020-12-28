@@ -42,6 +42,7 @@ class LoginPage extends GetView<LoginPageController> {
                           hintText: 'Введите пароль',
                           controller: controller.password,
                           onClear: controller.clearPassword,
+                          obscureText: true,
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 20),
