@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
         GetPage(
           name: '/',
           page: () => InitialPage(),
-          binding: HomePageBindings(),
+          binding: InitialPageBindings(),
         ),
         GetPage(
           name: '/login',
