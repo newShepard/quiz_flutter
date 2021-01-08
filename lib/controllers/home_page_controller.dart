@@ -4,7 +4,7 @@ import 'package:quiz_flutter/models/quiz/user.dart';
 import 'package:quiz_flutter/services/auth_service.dart';
 import 'package:quiz_flutter/services/user_service.dart';
 
-class InitialPageController extends GetxController {
+class HomePageController extends GetxController {
   final userReady = false.obs;
   final error = dynamic.obs;
   final user = Rx<QuizUser>();
