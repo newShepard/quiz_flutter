@@ -26,6 +26,8 @@ dependencies:
 
   # State management
   get: ^3.23.1
+  bloc: ^6.1.1
+  flutter_bloc: ^6.1.1
 
   # Geolocation
   geolocator: ^6.1.13
