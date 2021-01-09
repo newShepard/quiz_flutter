@@ -7,6 +7,8 @@ PODS:
     - Flutter
   - hexcolor (0.0.1):
     - Flutter
+  - path_provider (0.0.1):
+    - Flutter
   - Reachability (3.2)
 
 DEPENDENCIES:
@@ -14,6 +16,7 @@ DEPENDENCIES:
   - Flutter (from `Flutter`)
   - geolocator (from `.symlinks/plugins/geolocator/ios`)
   - hexcolor (from `.symlinks/plugins/hexcolor/ios`)
+  - path_provider (from `.symlinks/plugins/path_provider/ios`)
 
 SPEC REPOS:
   trunk:
@@ -28,12 +31,15 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/geolocator/ios"
   hexcolor:
     :path: ".symlinks/plugins/hexcolor/ios"
+  path_provider:
+    :path: ".symlinks/plugins/path_provider/ios"
 
 SPEC CHECKSUMS:
   connectivity: c4130b2985d4ef6fd26f9702e886bd5260681467
   Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
   geolocator: 057a0c63a43e9c5296d8ad845a3ac8e6df23d899
   hexcolor: fdfb9c4258ad96e949c2dbcdf790a62194b8aa89
+  path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
 
 PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
