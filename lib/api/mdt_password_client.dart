@@ -21,35 +21,59 @@ class MdtPasswordClient {
     return '${_mdtApiClient.appUrl}/#!$passwordUrl';
   }
 
-  Future<Response> _request(String urlPath,
-      {Map<String, dynamic> data,
-      MdtRequestSettings settings = const MdtRequestSettings(camel: true),
-      MdtRequestOptions options}) {
-    return _mdtApiClient.request(urlPath,
-        data: data, settings: settings, options: options);
+  Future<Response> _request(
+    String urlPath, {
+    Map<String, dynamic> data,
+    MdtRequestSettings settings = const MdtRequestSettings(camel: true),
+    MdtRequestOptions options,
+  }) {
+    return _mdtApiClient.request(
+      urlPath,
+      data: data,
+      settings: settings,
+      options: options,
+    );
   }
 
   Future<AuthData> checkRegistration() {
-    return _request('password/checkregistration')
-        .then((value) => AuthData.fromJson(jsonDecode(value.toString())));
+    return _request('password/checkregistration').then(
+      (value) => AuthData.fromJson(
+        jsonDecode(value.toString()),
+      ),
+    );
   }
 
   Future<Response> register({@required UserRegistrationData data}) {
-    return _request('password/register',
-        data: {'user': data.toJson(), 'url': _getPasswordUrl()});
+    return _request(
+      'password/register',
+      data: {
+        'user': data.toJson(),
+        'url': _getPasswordUrl(),
+      },
+    );
   }
 
   Future<Response> sendForgotPassword({@required String login}) {
-    return _request('password/sendforgotpassword',
-        data: {'login': login, 'url': _getPasswordUrl()});
+    return _request(
+      'password/sendforgotpassword',
+      data: {
+        'login': login,
+        'url': _getPasswordUrl(),
+      },
+    );
   }
 
   Future<Response> setPassword({@required SetPasswordData data}) {
-    return _request('password/setpassword', data: data.toJson());
+    return _request(
+      'password/setpassword',
+      data: data.toJson(),
+    );
   }
 
-  Future<Response> changePassword(
-      {@required ChangePasswordData data, @required bool reset}) {
+  Future<Response> changePassword({
+    @required ChangePasswordData data,
+    @required bool reset,
+  }) {
     var method = reset ? 'resetPassword' : 'changePassword';
     var urlParams = Utils.getUrlParams(data.toJson());
     return _request('security/$method$urlParams');

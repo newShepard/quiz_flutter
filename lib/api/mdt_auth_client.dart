@@ -12,21 +12,29 @@ class MdtAuthClient {
     _mdtApiClient = sl<MdtApiClient>();
   }
 
-  Future<Response> _request(String urlPath,
-      {Map<String, dynamic> data,
-      MdtRequestSettings settings = const MdtRequestSettings(camel: true),
-      MdtRequestOptions options}) {
-    return _mdtApiClient.request(urlPath,
-        data: data, settings: settings, options: options);
+  Future<Response> _request(
+    String urlPath, {
+    Map<String, dynamic> data,
+    MdtRequestSettings settings = const MdtRequestSettings(camel: true),
+    MdtRequestOptions options,
+  }) {
+    return _mdtApiClient.request(
+      urlPath,
+      data: data,
+      settings: settings,
+      options: options,
+    );
   }
 
-  Future<Response> signIn(
-      {@required String login, @required String password, bool rememberMe}) {
-    return _request('security/signin', data: {
-      'login': login,
-      'password': password,
-      'rememberMe:': rememberMe
-    });
+  Future<Response> signIn({
+    @required String login,
+    @required String password,
+    bool rememberMe,
+  }) {
+    return _request(
+      'security/signin',
+      data: {'login': login, 'password': password, 'rememberMe:': rememberMe},
+    );
   }
 
   Future<Response> signOut() {
@@ -34,11 +42,17 @@ class MdtAuthClient {
   }
 
   Future<Response> impersonate({@required num id}) {
-    return _request('security/impersonate', data: {'id': id});
+    return _request(
+      'security/impersonate',
+      data: {
+        'id': id,
+      },
+    );
   }
 
   Future<MdtApiUser> getMdtUser() {
-    return _request('mdt/user')
-        .then((value) => MdtApiUser.fromJson(value.data));
+    return _request('mdt/user').then(
+      (value) => MdtApiUser.fromJson(value.data),
+    );
   }
 }
