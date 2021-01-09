@@ -5,7 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:dio_cookie_manager/dio_cookie_manager.dart';
 import 'package:meta/meta.dart';
 import 'package:quiz_flutter/api/mdt_api_url_helper.dart';
-import 'package:quiz_flutter/errors/errors.dart';
+import 'package:quiz_flutter/core/error/exceptions.dart';
 import 'package:quiz_flutter/models/mdt_api/error_data.dart';
 import 'package:quiz_flutter/models/mdt_api/fetch.dart';
 import 'package:quiz_flutter/models/mdt_api/query.dart';

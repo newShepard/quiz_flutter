@@ -1,6 +1,6 @@
 import 'package:quiz_flutter/models/mdt_api/error_data.dart';
 
-abstract class QuizError extends Error {
+abstract class QuizError implements Exception {
   String name;
   String message;
 
