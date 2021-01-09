@@ -1,6 +1,6 @@
 import 'package:quiz_flutter/models/mdt_api/error_data.dart';
 
-abstract class QuizError implements Exception {
+abstract class QuizException implements Exception {
   String name;
   String message;
 
@@ -12,7 +12,7 @@ abstract class QuizError implements Exception {
   }
 }
 
-class MdtApiError extends QuizError {
+class MdtApiError extends QuizException {
   String code;
   dynamic args;
 
@@ -24,7 +24,7 @@ class MdtApiError extends QuizError {
   }
 }
 
-class OfflineError extends QuizError {
+class OfflineError extends QuizException {
   OfflineError() {
     name = 'Offline error';
     message = 'Check your internet connection';
